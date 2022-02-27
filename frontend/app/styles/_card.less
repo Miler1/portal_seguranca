@@ -1,0 +1,181 @@
+.card {
+	-webkit-box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.10);
+	-moz-box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.10);
+	box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.10);
+	margin-bottom: @card-padding;
+	padding: @card-padding;
+	background-color: @white;
+
+	.btn {
+		margin: 0px;
+	}
+
+	.btn-footer {
+		margin-left: -(@card-padding - 5px);
+		margin-right: -(@card-padding - 5px);
+	}
+
+	h1,h2,h3,h4,h5 {
+		margin-top: 0px;
+		margin-bottom: @card-padding;
+	}
+
+}
+
+.cards-horizontal {
+	display: flex;
+}
+
+
+.card-modulo-dados {
+	width: 50%;
+	margin-right: 15px;
+}
+
+.card-modulo-imagem {
+	width: 50%;
+}
+
+.card-fixed {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	max-width: 624px !important;
+    min-width: 624px !important;
+
+	.card-logo {
+
+		height: 70px;
+		margin-bottom: 20px;
+		margin-top: 20px;
+
+		img {
+			width: 275px;
+			margin: auto;
+			display: block;
+		}
+
+	}
+
+	.card-form {
+		&:extend(.card);
+	}
+
+	.card-header {
+		&:extend(.card);
+		h1,h2,h3,h4,h5 {
+			text-align: center;
+			margin-bottom: @standard-margin;
+			margin-top: 0px;
+		}
+
+	}
+
+	.card-footer {
+		clear: both;
+		float: right;
+
+		label {
+			padding-right: 55px;
+		}
+		.btn{
+			padding: 10px;
+		}
+	}
+
+	a {
+		color: @cor-texto-principal;
+		text-decoration: none;
+	}
+
+	max-width: @login-card-width;
+	min-width: @login-card-width;
+
+}
+
+.card-home {
+	margin-top: 20px;
+
+	.card-modulo {
+		height: 150px;
+		width: 150px;
+		border: solid @borda-card-modulo 1px;
+		border-radius: 4px;
+		position: relative;
+		display: inline-block;
+		margin-right: 20px;
+		margin-bottom: 20px;
+
+		.popover {
+			width: 250px;
+		}
+
+		.popover-custom {
+			position: absolute;
+			top: 0;
+			left: 3px;
+			z-index: 2;
+
+			a {
+				color: @cor-texto-principal;
+
+				i {
+					font-size: 14px;
+				}
+
+			}
+
+			div[uib-popover-popup] {
+				position: static;
+				background: @bg-A100;
+				color: inherit;
+				padding-top: 0;
+
+				.arrow {
+					display: block;
+					margin-top: 30px;
+
+				}
+
+				.arrow:after {
+					border-bottom-color: @arrow-popover;
+				}
+
+				.popover-title {
+					margin-bottom: 0;
+				}
+
+			}
+
+		}
+
+		img {
+			height: 119px;
+			width: 100%;
+		}
+
+		.div-btn {
+			background: @cor-tema;
+			width: 100%;
+			height: 30px;
+			border-bottom-left-radius: 4px;
+			border-bottom-right-radius: 4px;
+
+			a {
+				display: block;
+				text-align: center;
+				padding: 5px;
+				width: 100%;
+				height: 30px;
+				color: @mdb-text-color-light;
+				font-size: 14px;
+				text-decoration: none;
+				font-weight: bold;
+			}
+
+		}
+
+	}
+
+}

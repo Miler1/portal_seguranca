@@ -1,0 +1,146 @@
+# You can specialize this file for each language.
+# For example, for French create a messages.fr file
+#
+
+# Login
+
+authenticate.credenciaisInvalidas=Usuário e/ou senha inválidos.
+authenticate.inativo=Usuário inativo.
+authenticate.semAcesso.modulo=Usuário sem acesso ao sistema.
+authenticate.senhaInvalida=Senha inválida.
+
+authenticate.solicitarDadosComplementares=DADOS COMPLEMENTARES.
+
+# Validação
+
+erro=%s
+
+# Erro Padrão
+
+erro.padrao=Erro ao executar a operação. Contate o administrador do sistema.
+
+# Usuários
+
+usuarios.busca.naoEncontrado=Usuário não encontrado ou inativo.
+usuarios.remocao.jaRemovido=Usuário já removido do sistema.
+usuarios.cadastro.sucesso=Cadastro realizado com sucesso.
+usuarios.atualizacao.sucesso=O usuário %s foi atualizado com sucesso.
+usuarios.validacao.login.req=O login não pode ser vazio ou nulo.
+usuarios.validacao.perfil.req=O perfil não pode ser vazio ou nulo.
+usuarios.validacao.perfil.invalido=Perfil inexistente no sistema.
+usuarios.validacao.usuario.tamanhoSenha=A senha deve possuir no mínino 6 dígitos.
+usuarios.validacao.login.unico=Login já cadastrado para um usuário.
+usuarios.validacao.email.unico=Email já cadastrado para um usuário.
+usuarios.primeiroAcesso.sucesso=Senha definida com sucesso. Usuário ativado.
+usuarios.criarSenhaPrimeiroAcesso.senha=Uma senha já foi definida para esse usuário.
+usuarios.redefinirAtivoReq=Apenas usuários ativos podem redefinir a senha.
+usuarios.emailRedefinirSenha=A solicitação de redefinição de senha foi enviada para o e-mail  %s .
+usuarios.redefinir.sucesso=Senha redefinida com sucesso.
+usuarios.token.expirado=Link expirado. Para redefinir sua senha solicite um novo link.
+usuarios.token.tokenInvalido=Link já utilizado ou inválido.
+usuarios.ativo.sucesso=Usuário ativado com sucesso.
+usuarios.ativo.jaAtivo=O usuário já se encontra ativo.
+usuarios.ativo.jaDesativado=O usuário já se encontra desativado.
+usuarios.ativo.primeiroAcesso.obrigatorio=Impossível ativar este usuário, primeiro acesso não realizado.
+usuarios.senha.alterada.sucesso=Senha alterada com sucesso.
+usuarios.senha.diferente=Senha atual informada está incorreta
+usuarios.emailRedefinirSenha.envioEmail.erro=A solicitação de redefinição de senha não foi enviada. Serviço de email indisponível no momento, assim que reestabelecido, uma nova tentativa de envio será realizada para o email %s.
+
+# Perfis
+
+perfis.validacao.nome.req=O nome não pode ser vazio ou nulo.
+perfis.validacao.nome.max=O nome do perfil deve conter no máximo 200 caracteres.
+perfis.validacao.codigo.req=O código não pode ser vazio ou nulo.
+perfis.validacao.codigo.max=O código do perfil deve conter no máximo 200 caracteres.
+
+
+# Permissao
+
+permissoes.validacao.modulo.req=O módulo não pode ser vazio ou nulo.
+permissoes.validacao.nome.req=O nome não pode ser vazio ou nulo.
+permissoes.validacao.nome.tamanho=O nome da permissão deve conter no máximo 200 caracteres.
+permissoes.validacao.codigo.req=O código não pode ser vazio ou nulo.
+permissoes.validacao.codigo.tamanho=O código da permissão deve conter no máximo 200 caracteres.
+permissoes.validacao.codigo.unicoComposto=Código %s já está sendo utilizado por outra permissão.
+permissoes.validacao.codigo.unico=Existem códigos de permissão duplicados.
+permissoes.validacao.unique.nome=Este nome está sendo utilizado por outra permissão.
+permissoes.validacao.unique.codigo=Este código está sendo utilizado por outra permissão.
+permissoes.validacao.perfis.duplicados=Existem perfis duplicados na mesma permissão.
+
+# Módulos
+
+modulos.nome.obrigatorio=O preenchimento do campo Nome é obrigatório.
+modulos.nome.min=O nome do módulo deve conter no mínimo 200 caracteres.
+modulos.nome.max=O nome do módulo deve conter no máximo 200 caracteres.
+modulos.sigla.obrigatorio=O preenchimento do campo Sigla é obrigatório.
+modulos.sigla.min=A sigla do módulo deve conter no mínimo 3 caracteres.
+modulos.sigla.max=A sigla do módulo deve conter no máximo 3 caracteres.
+modulos.sigla.unico=Sigla já está sendo utilizada por outro módulo.
+modulos.url.obrigatorio=O preenchimento do campo URL é obrigatório.
+modulos.descricao.obrigatorio=O preenchimento do campo Descrição é obrigatório.
+modulos.fixo.permissao=Não é permitido cadastrar a permissão com este módulo.
+modulos.cadastrarPerfis.obrigatorio=O campo cadastrarPerfis não pode ser nulo ou inválido.
+modulos.loginTokenObrigatorio.obrigatorio=O campo loginTokenObrigatorio não pode ser nulo ou inválido.
+modulos.cadastro.arquivo.erro=Existem erros na estrutura do arquivo. Favor verificar e realizar outro upload.
+modulos.logo.invalido=O arquivo do logotipo é inválido.
+modulos.arquivoIntegracao.invalido=O arquivo de integração é inválido.
+modulos.ips.obrigatorio=É obrigatório conter os IP's referentes aos servidores utilizados pelo módulo.
+modulos.url.max=A url deve conter no máximo 200 caracteres.
+modulos.descricao.max=A descrição deve conter no máximo 500 caracteres.
+modulos.ips.max=Os ip's devem conter no máximo 50 caracteres.
+
+# Agenda Desativação
+
+agendas.usuario.obrigatorio=É obrigatório informar o usuário alvo do agendamento.
+agendas.dataInicio.obrigatorio=É obrigatório informar uma data inicial.
+agendas.dataFim.obrigatorio=É obrigatório informar uma data final.
+agendas.datas.invalidas=Datas inválidas.
+agendas.usuarioSolicitante.obrigatorio=É obrigatório informar o usuário solicitante do agendamento.
+agendas.motivo.obrigatorio=É obrigatório informar o motivo da desativação.
+agendas.descricao.obrigatorio=É obrigatório informar a descrição.
+agendas.dataSolicitacao.obrigatorio=É obrigatório informar a data de solicitação do agendamento.
+agendas.cadastro.sucesso=Agendamento de desativação cadastrado com sucesso.
+agendas.usuario.desativado=O usuário já se encontra desativado.
+agendas.usuario.naoEncontrado=Usuario não encontrado.
+agendas.usuario.logado=Impossível desativar usuário logado.
+
+# OAuth Requests
+
+oAuth.request.invalido=Parâmetros recebidos por request external inválidos.
+oAuth.grantType.invalido=Grant Type não implementado ou desativado.
+oAuth.authorizationFormat.invalido=Formato de autorização inválido.
+oAuth.client.naoEncontrado=Client OAuth não encontrado.
+authenticate.certificado.erro=Erro ao identificar o certificado. Tente novamente mais tarde ou contate o orgão responsável.
+authenticate.certificado.usuario.nao.existe=Não existe nenhum usuário vinculado a esse certificado.
+
+# OAuth Clients
+
+oAuthClient.client.naoCadastrado=Modulo não cadastrado.
+oAuthClient.clientId.obrigatorio=É obrigatório informar o client id.
+oAuthClient.clientSecret.obrigatorio=É obrigatório informar o client secret.
+
+# Documento
+
+documentos.cadastro.jaSalvo=Documento já salvo.
+documentos.cadastro.tipoKey.obrigatorios=Tipo ou key do documento não preenchidos.
+
+# Uploads
+
+uploads.extensao.naoSuportada=Extensão de arquivo não suportada.
+
+# Setores
+setores.validacao.dataCadastro.req=É obrigatório informar a data de cadastro do setor.
+setores.validacao.nome.req=É obrigatório informar o nome do setor.
+setores.validacao.sigla.req=É obrigatório informar a sigla do setor.
+setores.validacao.tipoSetor.req=É obrigatório informar o tipo do setor.
+setores.validacao.removido.req=É obrigatório informar se o setor foi removido.
+setores.validacao.ativo.req=É obrigatório informar se o setor está ativo.
+setores.cadastro.sucesso=Cadastro realizado com sucesso.
+setores.validacao.modulo.req=É obrigatório vincular um modulo ao setor.
+setores.validacao.nome.unico=Nome de setor já cadastrado.
+setores.validacao.sigla.unico=Sigla de setor já cadastrada.
+setores.removido.sucesso=Exclusão realizada com sucesso.
+setores.edicao.sucesso=Edição realizada com sucesso.
+setores.ativado.sucesso=Setor ativado com sucesso.
+setores.desativado.sucesso=Setor desativado com sucesso.
+setores.validacao.ativar.desativar.removido=Não é possível ativar/desativar um setor removido.

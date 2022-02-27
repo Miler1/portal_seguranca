@@ -1,0 +1,25 @@
+.card-fixed(ng-if='isRoute("/acesso")',ng-controller='AcessoController', ng-init="init()")
+
+	.card-logo
+		img(src='images/entrada-unica_cor.png')
+
+	.card-header
+		h3(ng-if="usuario.temSenha") Redefinição de senha
+		h3(ng-if="!usuario.temSenha") Criação de senha
+
+		form(name="form", role="form", ng-submit="criarSenha()", novalidate)
+
+			label.label-login(for='senha') Senha:
+			.form-group.inner-addon.left-addon(ng-class="{ 'has-error' : form.senha.$invalid && !form.senha.$pristine && !form.senha.$error.required && !form.senha.$untouched}")
+				i.material-icons.login vpn_key
+				input#senha.form-control.input-login(name='senha', type='password', required, ng-model='senha', minlength="6", placeholder="Senha com no mínimo 6 digitos")
+				p.help-block(ng-show="form.senha.$invalid && !form.senha.$pristine && form.senha.$error.minlength && !form.senha.$untouched")
+					| É obrigatório que a senha tenha no mínimo 6 dígitos.
+
+			label.label-login(for='confirmacao') Confirmar senha:
+			.form-group.inner-addon.left-addon(ng-class="{ 'has-error' : form.confirmacao.$invalid && !form.confirmacao.$pristine && !form.confirmacao.$error.minlength && form.confirmacao.$error.pwCheck && !form.confirmacao.$error.required}")
+				i.material-icons.login vpn_key
+				input#confirmacao.form-control.input-login(name='confirmacao', type='password', required, ng-model='confirmacao', minlength="6", pw-check="senha", placeholder="Digite novamente a senha")
+				p.help-block(ng-show="form.confirmacao.$invalid && !form.confirmacao.$pristine && form.confirmacao.$error.pwCheck && !form.confirmacao.$error.minlength && !form.confirmacao.$error.required")
+					| As senhas não são iguais.
+			button.btn.btn-primary.btn-raised.btn-block(ng-disabled="form.$invalid", type="submit") Salvar

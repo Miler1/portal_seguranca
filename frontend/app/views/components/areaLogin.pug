@@ -1,0 +1,10 @@
+
+div.login(ng-if="!esconderCabecalhoUsuario")
+
+	h5.nomeUsuario {{getUsuario().nome.truncar(34)}} ({{getUsuario().perfilSelecionado.nome}})
+
+	div.controles
+		a(href="", ng-click="logout()")
+			span.glyphicon.glyphicon-off
+		a(target='_blank', href="manual/portal.html")
+			span.textIcon ?

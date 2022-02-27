@@ -1,0 +1,126 @@
+include ../../components/paginacao
+include ./modalRemover
+include ./modalAtivarDesativarSetor
+
+h1.page-header(ng-if="verificarPermissao(AcaoSistema.PESQUISAR_SETOR)")
+	| Gestão de setores
+	button.btn.btn-raised.btn-header.header-btn.pull-right.btn-primary(ng-click="irCadastro()", ng-if="verificarPermissao(AcaoSistema.CADASTRAR_SETOR)")
+		i.material-icons add
+		|	Cadastrar
+
+.card(ng-if="verificarPermissao(AcaoSistema.PESQUISAR_SETOR)")
+
+	h3 Pesquisar
+
+	form(name="form", novalidate)
+		.row
+			.col-md-7
+				.form-group
+					label(for='nome') Nome:
+					input.form-control(name="nome", type="text", ng-model="filtro.nome", maxlength="200", on-enter="listar()")
+
+			.col-md-2
+				.form-group
+					label(for='sigla') Sigla:
+					input.form-control(name="sigla", type="text", ng-model="filtro.sigla", maxlength="20", on-enter="listar()")
+
+			.col-md-3
+				.form-group
+					label(for='tipo') Tipo:
+					select.form-control(name='tipo', ng-options="tipoSetorFiltro.codigo as tipoSetorFiltro.nome for tipoSetorFiltro in tipoSetorFiltro", ng-model="filtro.tipo", on-enter="listar()")
+						option(value="" disabled selected style="display: none;") Selecione
+
+
+	button#botaoPesquisar.btn.btn-raised.btn-sm.btn-primary.pull-right(type="button", ng-click="listar()")
+		i.material-icons search
+		|    Pesquisar
+
+	button.btn.btn-link.no-padding-sides.btn-xs.btn-shortcut-danger.pull-left.btn-blur(type="button", ng-click="limparFiltro()")
+		i.material-icons clear
+		|    Limpar
+
+.card(ng-if="verificarPermissao(AcaoSistema.PESQUISAR_SETOR)")
+
+	h3 Setores cadastrados
+
+	table.table.table-hover.table-striped(ng-if='paginacao.totalItens > 0')
+		thead
+			tr
+				th.col-fixed-40
+
+				th.col-md-6
+					span.pointer(ng-click='listar("Nome", ordenacaoReversa = !ordenacaoReversa)')
+						| Nome
+					i.pointer.material-icons(ng-click='listar("Nome", ordenacaoReversa)', ng-show='campo !== "Nome"') filter_list
+					span.pointer(ng-show='campo == "Nome"')
+						i.material-icons(ng-click='listar("Nome", ordenacaoReversa = !ordenacaoReversa)', ng-show='!ordenacaoReversa') arrow_downward
+						i.material-icons(ng-click='listar("Nome", ordenacaoReversa = !ordenacaoReversa)', ng-show='ordenacaoReversa') arrow_upward
+
+				th.col-md-2
+					span.pointer(ng-click='listar("Sigla", ordenacaoReversa = !ordenacaoReversa)')
+						| Sigla
+					i.pointer.material-icons(ng-click='listar("Sigla", ordenacaoReversa)', ng-show='campo !== "Sigla"') filter_list
+					span.pointer(ng-show='campo == "Sigla"')
+						i.material-icons(ng-click='listar("Sigla", ordenacaoReversa = !ordenacaoReversa)', ng-show='!ordenacaoReversa') arrow_downward
+						i.material-icons(ng-click='listar("Sigla", ordenacaoReversa = !ordenacaoReversa)', ng-show='ordenacaoReversa') arrow_upward
+
+				th.col-md-3
+					span Tipo
+
+				th.col-md-1
+
+		tbody
+			tr(ng-repeat=("setor in setores"))
+
+				td
+					div.status-ativo(ng-if="setor.ativo", uib-tooltip="Ativo", tooltip-placement="top-left")
+					div.status-inativo(ng-if="!setor.ativo", uib-tooltip="Inativo", tooltip-placement="top-left")
+
+				td
+					.text(uib-tooltip="{{setor.nome}}", tooltip-placement="top-left")
+						span {{setor.nome}}
+
+				td
+					.text(uib-tooltip="{{setor.sigla}}", tooltip-placement="top-left")
+						span {{setor.sigla}}
+
+				td
+					.text(uib-tooltip="{{setor.tipo}}", tooltip-placement="top-left")
+						span {{tipoSetor[setor.tipo].nome}}
+
+				td
+					div.dropdown
+						button.btn.btn-primary.btn-xs.btn-outline(type="button", data-toggle="dropdown")
+							|    ações &nbsp;
+							span.caret
+						ul.dropdown-menu.dropdown-menu-right(role="menu")
+							li(ng-if="verificarPermissao(AcaoSistema.VISUALIZAR_SETOR)")
+								a(title='Visualizar', ng-click='goToRoute("setor/visualizacao/" + setor.id)')
+									i.material-icons remove_red_eye
+									|    Visualizar
+
+							li(ng-if="verificarPermissao(AcaoSistema.EDITAR_SETOR)")
+								a(title='Editar', ng-click='goToRoute("setor/cadastro/" + setor.id)')
+									i.material-icons mode_edit
+									|	Editar
+
+							li(ng-if='verificarPermissao(AcaoSistema.ATIVAR_DESATIVAR_SETOR) && setor.ativo')
+								a(title='Desativar', ng-click='abrirModalAtivarDesativar(setor)')
+									i.material-icons power_settings_new
+									|	Desativar
+
+							li(ng-if='verificarPermissao(AcaoSistema.ATIVAR_DESATIVAR_SETOR) && !setor.ativo')
+								a(title='Ativar', ng-click='abrirModalAtivarDesativar(setor)')
+									i.material-icons power_settings_new
+									|	Ativar
+
+							li(ng-if='verificarPermissao(AcaoSistema.REMOVER_SETOR)')
+								a(title='Excluir', ng-click='abrirModalExcluir(setor)')
+									i.material-icons delete
+									|	Excluir
+
+	+paginacao("paginacao", "setores")
+
+	center(ng-if='paginacao.totalItens === 0')
+		span
+			| Não existem dados a serem exibidos.

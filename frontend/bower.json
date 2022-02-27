@@ -1,0 +1,30 @@
+{
+  "name": "portal_seguranca",
+  "version": "0.0.1",
+  "dependencies": {
+    "bootstrap": "3.3.7",
+    "jquery": "2.1.3",
+    "underscore": "1.8.3",
+    "angular": "1.6.5",
+    "angular-route": "1.6.5",
+    "angular-bootstrap": "2.5.0",
+    "angular-cookies": "^1.6.5",
+    "blockUI": "blockui#*",
+    "angular-input-masks": "^2.6.0",
+    "remarkable-bootstrap-notify": "^3.1.3",
+    "angular-ui-mask": "^1.8.7",
+    "angular-i18n": "^1.6.6",
+    "bootstrap-material-design": "https://github.com/mdbootstrap/bootstrap-material-design.git#0.5.10",
+    "material-design-icons": "^3.0.1",
+    "angular-animate": "1.6.5",
+    "angular-locale-pt-br": "^1.3.15",
+    "dropzone": "dropzonejs#^4.3.0",
+    "angular-bootstrap-multiselect": "https://github.com/bentorfs/angular-bootstrap-multiselect.git#^1.1.11",
+    "mdi": "^2.0.46",
+    "ui-cropper": "^1.0.6"
+  },
+  "resolutions": {
+    "angular": "1.6.5",
+    "jquery": "^2.2"
+  }
+}

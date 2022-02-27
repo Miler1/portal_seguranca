@@ -1,0 +1,439 @@
+= Manual Portal de Segurança
+:doctype: book
+:title-logo: sample-title-logo.jpg
+// Settings:
+:compat-mode:
+:experimental::linkcss:
+:icons: font
+:listing-caption:
+:sectnums:
+:idprefix: -
+:toc:
+:toc2:
+:toc-title: Índice
+// Criar ancora nos títulos
+:sectanchors:
+:imagesdir: images
+:icons: font
+
+
+
+== Introdução
+
+Este documento apresenta um guia do módulo Gestão de Acesso e Auditoria do Sistema Integração Lotes(SIL), em que será apresentado ao usuário todas as funcionalidades, com finalidade de esclarecer possiveis dúvidas sobre a utilização do sistema. Visando dar assistência aos usuários do sistema.
+
+O módulo “Gestão de Acesso e Auditoria” permite ao usuário, que tenha a respectiva permissão de acesso, realizar o gerenciamento de acesso aos módulos do sistema. Esse gerenciamento acontece por meio do cadastro de usuário, módulos, permissões e perfis de acesso.
+
+A fim de facilitar o entendimento deste manual, iremos separar a descrição deste módulo nos seguintes itens de menu:
+
+icon:chevron-right[] *Usuário*;
+
+icon:chevron-right[] *Módulo*;
+
+icon:chevron-right[] *Permissão*; e
+
+icon:chevron-right[] *Perfil*.
+
+Cada um dos itens acima está subdivido em duas funcionalidades: “Página de Gerenciamento” e “Página de Cadastro”. A primeira diz respeito à pesquisa, visualização, edição e exclusão dos registros já cadastrados. A segunda refere-se ao cadastro de um novo registro no sistema.
+
+
+== Autenticação do Usuário
+
+A figura logo abaixo apresenta a tela de "Acesso de Usuário" que pode ser acessada através do endereço http://www.sistemaintegracao.com.br, essa tela faz a autenticação.
+
+image::prints/login.png[scaledwidth=100%, title="Autenticação do Usuário"]
+
+[cols="^.>1,9"]]
+|===
+
+2+| *Tela Acesso de Usuários*
+
+|1| Campo para o usuário  digitar o CPF.
+
+|2| Campo para o usuário irá digitar a senha.
+
+|3| Botão para acessar o sistema.
+
+|4| Link para recuperar a senha.
+
+|===
+
+O usuário deve informar respectivamento o "CPF" e "Senha" e em seguida selecionar o botão "Acessar" para que a autenticação seja feita.
+
+Caso for o primeiro acesso, o usuário será obrigado alterar a senha para acessar o sistema. Um modal será exibido para o usuário realizar a troca.
+
+image::prints/troca-senha.png[scaledwidth=100%, title="Modal troca de senha"]
+
+Se o usuário não lembrar a senha, há um link logo abaixo da área de login que irá exibir um modal como indicado na figura.
+
+image::prints/recuperar-senha.png[scaledwidth=100%, title="Modal autenticação"]
+
+Após a autenticação , um modal de seleção de perfis será exibido, caso o usuário tenha mais que um perfil.
+
+image::prints/modal-perfil.png[scaledwidth=100%, title="Modal seleção de perfil"]
+
+Após selecionar um perfil o usuário será redimensionado para a "Página Inicial" que exibirá as funcionalidades correspondente ao perfil selecionado.
+
+== Página Inicial
+
+O usuário pode observar que são exibidos os itens com suas funcionalidades. E conforme já citado para cada um dos itens possui uma página de gerenciamento e outra de cadastro.
+
+Descreveremos, a seguir, as funcionalidades desse módulo para melhor compreensão do sistema por parte dos seus usuários.
+
+image::prints/inicial.png[scaledwidth=100%, title="Tela página inicial"]
+
+
+[cols="^.>1,9"]]
+|===
+
+2+| *Tela Página Inicial*
+
+|1| Logo Incra, o logo é um link que redimenciona o usuário para tela de seleção de módulos.
+
+|2| Area informações do usário, contém o nome do usuário e o perfil que o mesmo esá logado. E os ícones para o usário acessa o manual e deslogar do sistema.
+
+|3| Menu
+
+|4| Ícones para acessar as funcionalidades do sistema.
+
+|===
+
+
+== Usuário
+
+Esta funcionalidade permite que seja realizada a gestão de usuários no Integração Lotes. Será possível icon:filter[] *Filtrar*, icon:eye[] *Visualizar*, icon:pencil[] *Editar*, icon:trash[] *Excluir*  ou        icon:plus-circle[] *Cadastrar Usuário*  do sistema.
+
+=== Gerenciar Usuários
+
+Após acessar essa opção, a página de gerenciamento será exibida ao usuário conforme a figura ilustra logo abaixo.
+
+image::prints/pesquisa-usuario.png[scaledwidth=100%, title="Tela gerenciar usuário"]
+
+[cols="^.>1,9"]]
+|===
+2+| *Tela Pesquisar Usuário*
+|1| Campo para fazer o filtro por nome
+|2| Campo para fazer o filtro por CPF
+|3| Campo para selecionar o perfil a se filtrado
+|4| Botão para cadastrar novo usuário
+|5| Tabela de usuários cadastrados
+|6| Ao clicar em "Nome" ou "Nascimento" o usuário pode ordenar a listagem de usuário icon:chevron-up[] icon:chevron-down[]
+|7| Paginação da listagem.
+|8| Status
+|9| Ações
+|===
+
+
+É nessa página que é disponibilizado um atalho para a funcionalidade de cadastro de novo usuário. Para isso, basta selecionar o botão image:btn/cadastrar-usuario.png[] que então o usuário será redirecionado à tela de cadastro. O cadastro de usuário será abordado mais adiante no item "4.2" deste manual.
+
+==== Pesquisa por usuário
+
+Para efetuar uma busca por um usuário, deve ser inserido no campo de pesquisa o nome, CPF ou perfil. Para que a busca seja executada, basta selecionar o botão image:btn/filtrar.png[] ou precionar a tecla ENTER.
+
+Poderá ainda ordenar os resultados a serem exibidos na tabela, para isso basta clicar em cima do nome da coluna na tabela Usuários Cadastrados como indicado na figura 6 item 6, uma seta será exibida indicando se a ordenação está na ordem crescente ou decrescente.
+
+É permitido ordernar por "nome" ou "Data de Nascimento".
+
+Para cada registro encontrado e exibido na tabela de “Usuários Cadastrado”, é possível observar, por meio das colunas da tabela, o nome do usuário, a sua data de nascimento, o seu CPF e seu status do usuário no sistema, que pode ser ativado ou desativado. Além disso, na última coluna o sistema disponibiliza 3 ações que podem ser selecionadas. Essas ações são:
+
+icon:eye[] *Visualizar*
+
+icon:pencil[] *Editar*
+
+icon:trash[] *Remover*
+
+
+==== Visualizar Usuário
+
+Selecionando a ação “ icon:eye[] *Visualizar* ”, o sistema exibe uma nova modal contendo os dados de cadastro do usuário no sistema (Ex: Nome, CPF, Data de Nascimento, Perfil e Status). A Figura 10 apresenta a página exibida após a seleção desta ação.
+
+image::prints/visualizar-usuario.png[scaledwidth=100%, title="Modal visualizar usuário"]
+
+==== Editar
+
+Ao selecionar a ação “ icon:pencil[] *Editar* ”, o sistema permite que os dados de cadastro do usuário sejam atualizados. Ao selecionar esta ação para um determinado registro na tabela de “Usuários Cadastrados”, o sistema exibirá a página conforme a Figura 11.
+
+image::prints/editar-usuario.png[scaledwidth=100%,  title="Tela editar usuário"]
+
+Note que nessa página é exibido um formulário contendo os campos de dados do usuário selecionado. Para alterá-los, basta modificar o conteúdo dos campos desejados.
+
+NOTE: Não é permitido editar o CPF do usuário
+
+Ainda nessa página, é possível que seja adicionados ou removidos perfis de acesso desse usuário que está sendo editado. Para isso basta clicar em um perfil e arrastar para adicionar ou remover.
+
+Para concluir a alteração dos dados do usuário, basta que seja selecionado o botão “ icon:check[] *Salvar* ”.
+
+Ao finalizar a edição o sistema redirecionará o usuário à tela de "Gerenciar Usuários" e uma mensagem será exibida confirmando a atualização.
+
+==== Excluir
+
+Para realizar esta ação, basta selecionar a ação " icon:trash[] *Excluir* " referente ao usuário que deseja remover do sistema.
+Ao selecionar a referida ação, o sistema exibe uma mensagem de diálogo para que seja confirmada ou não a exclusão do usuário do sistema. A Figura 9 apresenta esta mensagem.
+
+image::prints/excluir-usuario.png[scaledwidth=100%, title="Modal excluir usuário"]
+
+NOTE: Não é possível se auto remover
+
+Para confirmar a exclusão, basta que seja selecionado o botão image:btn/excluir-usuario.png[] exibido na caixa de diálogo. Caso não deseje realizar tal exclusão, é necessário fechar a caixa de diálogo que automaticamente a ação de exclusão será cancelada.
+
+==== Desativar
+
+Na tela de "Gerenciar Usuários", o sistema também permite a desativação de usuários do sistema. Para realizar esta ação, basta selecionar a chave na coluna status da tabela "Usuários Cadastrados" referente ao usuário que deseja interromper sua utilização no sistema.
+
+
+NOTE: Não é possível se auto desativar
+
+[cols="^.>1,9"]]
+|===
+2+| *Possibilidades*
+|image:btn/ativado.png[scaledwidth=100%]| Usuário está ativado no sistema
+|image:btn/desativado.png[scaledwidth=100%]| Usuário está desativado no sistema
+|image:btn/desabilitado.png[scaledwidth=100%]| A chave de ativar/desativar vai estar desabilitadada caso seja o usuário que está logado no sistema.
+|===
+
+=== Cadastrar Usuário
+
+O cadastro de usuário permite que sejam inseridos novos usuários à base de dados do SIL. Assim, de acordo com os perfis de acesso definidos (Definição de perfis será vista no item 7.1 ), o usuário poderá acessar as funcionalidades especificas do perfil no sistema.
+
+O acesso à página de cadastro de usuário se dá através do botão image:btn/cadastrar-usuario.png[] na tela de "Gerência Usuários".
+
+A Figura 10 apresenta a página "Cadastrar Usuário".
+
+image::prints/cadastrar-usuario.png[scaledwidth=100%, title="Tela cadastrar usuário"]
+
+Note que o sistema exibe um formulário contendo os campos para inserção dos dados do usuário.
+
+Para realizar o cadastro, é necessário seguir dois passos a seguir:
+
+. Realizar o preenchimento dos dados pessoais da pessoa a ser cadastrada;
+
+. Definir o perfil de acesso que o usuário terá no sistema;
+
+Conforme já citado, o passo 1 consiste no preenchimento dos dados pessoais do usuário (CPF, Data de Nascimento, Nome, Telefones e e-mail). É importante ressaltar que o CPF inserido no momento do cadastro será utilizado posteriormente para que o usuário faça login no SIL.
+
+NOTE: É necessário apenas preencher os campos obrigatórios (sinalizados por um asterisco). Porém, opcionalmente, o usuário poderá informar os campos não obrigatórios para que o seu cadastro seja o mais completo possível.
+
+O segundo passo consiste em definir os perfis de acesso que o usuário a ser cadastrado terá no sistema.
+
+Para atribuir um perfil ao usuário, basta clicar em um perfil no painel "Disponível" e manter pressionado, depois arrastar para a o painel "Selecionados".
+
+Pode-se observar que é possível remover um perfil que já tenha sido adicionado. Para isso basta fazer o processo inverso de atribuir perfil.
+
+NOTE: Essa formulário possui o botão "Limpar", caso o usuário desejar começar o cadastro novamento basta acessar o mesmo e ele irá limpar todos os campos do formulário.
+
+Para concluir o cadastro do usuário, basta que seja selecionado o botão image:btn/cadastrar.png[] localizado no final da página.
+
+Após a seleção deste botão, o sistema retornará para a tela de "Gerênciar Usuarios" e exibirá uma mensagem confirmando o cadastro desse novo usuário. Além disso, a tabela contendo os usuários cadastrados no sistema será atualizada com esse novo usuário.
+
+Esse novo usuário receberá um e-mail após concluir o cadastro, o email contém o link e a senha provisória de acesso ao SIL. O login de acesso será o próprio CPF do usuário cadastrado.
+
+== Módulo
+
+Esta funcionalidade permite que seja realizada a gestão de módulos no SIL. Será possível pesquisar, visualizar, editar, excluir ou cadastrar novos módulos no sistema.
+
+=== Gerenciar Módulo
+
+A página de Gerenciar Módulos permite pesquisar, visualizar os dados, editar e excluir os módulos. O acesso a essa página se dá através da seleção do item de menu “Módulo"
+
+Após acessar essa opção, a página de gerenciamento será exibida ao usuário conforme a Figura 11.
+
+image::prints/editar-usuario.png[scaledwidth=100%, title="Tela gerenciar módulo"]
+
+==== Pesquisar Módulo
+
+O usuário poderá, ainda, ordenar os resultados a serem exibidos na tabela que listará os itens encontrados pela busca, para isso basta clicar em "Nome" ou "Sigla" que irá aparecer um ícone indicando se a lista está ordenada no formato crescente ou descrecente.
+
+O usuário poderá, ordenar os resultados encontrados pela busca, para isso basta clicar nos nomes das colunas da tabela como "Nome" ou "Sigla" que irá aparecer um ícone indicando se a lista está ordenada no formato crescente icon:chevron-up[]  ou descrecente icon:chevron-down[].
+
+==== Visualizar
+
+Selecionando a ação “Visualizar”, o sistema exibe uma modal contendo os dados de cadastro do módulo selecionado (Ex: Nome, sigla,  data de cadastro, URL do módulo, descrição, imagem). A Figura 12 apresenta a página exibida após a seleção desta ação.
+
+image::prints/visualizar-usuario.png[scaledwidth=100%, title="Modal visulizar módulo"]
+
+==== Editar
+
+Na página de pesquisa de módulos, ao selecionar a ação “Editar”, o sistema permite que os dados de cadastro do módulo sejam atualizados. Ao selecionar esta ação para um determinado registro na tabela de “Módulos Cadastrados”, o sistema exibirá a página conforme a Figura 13.
+
+Note que nessa página é exibido um formulário contendo os campos de dados do módulo selecionado. Para alterá-los, basta modificar o conteúdo dos campos desejados.
+
+Para concluir a alteração dos dados, é necessário que seja selecionado o botão image:btn/salvar.png[]
+
+image::prints/editar-usuario.png[scaledwidth=100%, title="Tela editar modulo"]
+
+Ao finalizar a edição, o sistema redirecionará o usuário à tela de "Gerenciar Módulo" e uma mensagem de cofirmação será exibida na tela.
+
+
+==== Excluir
+
+Na tela de "Gerenciar Módulos", o sistema também permite a remoção de módulos do sistema. Para realizar esta ação, basta selecionar a ação “Remover” referente ao módulo que deseja remover do sistema.
+
+Ao selecionar a referida ação, o sistema exibe uma mensagem de diálogo para que seja confirmada ou não a exclusão do módulo selecionado. A Figura 14 apresenta esta mensagem.
+
+image::prints/excluir-usuario.png[scaledwidth=100%, title="Modal excluir modulo"]
+
+Para confirmar a exclusão, basta que seja selecionado o botão image:btn/excluir-modulo.png[] exibido na caixa de diálogo. Caso não deseje realizar tal exclusão, é necessário acessar o botão image:btn/cancelar.png[] que a caixa de diálogo irá ser fechada sem que nenhum alteração aconteça.
+
+=== Cadastrar Módulo
+
+O cadastro de módulo permite a inserção de novos módulos ao SIL. Módulos são entendidos como uma parte do sistema responsável por uma tarefa bem definida, fornecendo um conjunto de funcionalidades aos usuários.
+
+A forma de acesso a esta página de cadastro, é através do botão image:btn/cadastrar-modulo.png[] disponibilizado na página de "Gerenciar Módulos"
+
+Ao acessar a opção citada acima, o sistema disponibilizará a página para que seja efetuado o cadastro desse módulo de sistema. Essa página é mostrada pela Figura 15.
+
+image::prints/editar-usuario.png[scaledwidth=100%, title="Tela Cadastrar Módulo"]
+
+Para realizar o cadastro é necessário que o usuário forneça os dados obrigatórios solicitados nos campos da página. São solicitados o nome, a sigla, URL, descrição, chave de segurança e imagem. Os campos de preenchimento obrigatório são sinalizados por um asterisco.
+
+TIP: Escolha uma imagem que represente a ideia do módulo que está sendo cadastrado.
+
+Esse formulário possui o botão image:btn/excluir-modulo.png[], caso o usuário desejar começar o cadastro novamento basta acessar o mesmo e ele irá limpar todos os campos do formulário.
+
+Após o preenchimento dos campos, basta selecionar o botão image:btn/cadastrar.png[] para que o cadastro seja concluído com sucesso.
+
+Após a finalização do cadastro, o sistema redirecionará o usuário a tela de "Gerenciar Módulos" e exibirá uma mensagem confirmando a inserção do novo módulo no sistema. Além disso, a tabela contendo os módulos cadastrados será atualizada com esse novo registro.
+
+== Permissões
+
+Esta funcionalidade permite que seja realizada a gestão de permissões de acesso ao SIL.  editar, excluir ou cadastrar novas permissões no sistema. Será possível icon:filter[] *Filtrar*, icon:eye[] *Visualizar*, icon:pencil[] *Editar*, icon:trash[] *Excluir*  ou        icon:plus-circle[] *Cadastrar Permissão*  do sistema.
+
+Mais adiante, no cadastro de Perfil de Usuário (item 7), essas permissões poderão ser vinculadas aos perfis, definindo assim o nível de acesso que cada perfil terá no sistema.
+
+=== Gerenciar Permissões
+
+O acesso a essa página se dá através da seleção do item de menu “Perfil”.
+
+Também é disponibilizado nessa página um atalho para a funcionalidade de cadastro de novo perfil. Para isso, basta selecionar o botão image:btn/cadastrar-permissao.png[] que então o usuário será redirecionado à tela de cadastro.
+
+Após acessar essa opção, a página de gerenciamento será exibida ao usuário conforme a Figura 16.
+
+image::prints/editar-usuario.png[scaledwidth=100%, title="Tela gerenciar permissões"]
+
+==== Pesquisar
+
+Para efetuar uma pesquisa por uma permissão, deve ser inserido no campo de pesquisa o nome ou o módulo da permissão que se deseja pesquisar. Para que a busca seja executada, basta selecionar o botão image:btn/filtrar.png[]ou precionar a tecla ENTER.
+
+O usuário poderá, ordenar os resultados encontrados pela busca, para isso basta clicar no nome das colunas da tabela como "Nome" "Módulo" ou "Data de Cadastro" que irá aparecer um ícone indicando se a lista está ordenada no formato crescente icon:chevron-up[] ou descrecente icon:chevron-down[].
+
+Para cada registro encontrado e exibido na tabela de “Permissões Cadastrada”, é possível observar, por meio das colunas da tabela, o nome da permissão, o  módulo e sua data de cadastro. Além disso, na última coluna o sistema disponibiliza 3 ações que poderão ser selecionadas pelo usuário. Essas ações são:
+
+icon:eye[] *Visualizar*
+
+icon:pencil[] *Editar*
+
+icon:trash[] *Remover*
+
+NOTE: Essas ações vão depender das permissões que o usuário possuir no sistema.
+
+==== Visualizar
+
+Selecionando a ação “icon:eye[] *Visualizar* ”, o sistema exibe uma nova página contendo os dados da permissão selecionado (Ex: Nome, Módulo, Código e Data de Cadastro). A Figura 17 abaixo apresenta a página exibida após a seleção desta ação.
+
+image::prints/visualizar-usuario.png[scaledwidth=100%, title="Modal Visulizar Permissões"]
+
+
+==== Editar
+
+Ao selecionar a ação “ icon:pencil[] *Editar* ", o sistema permite que os dados de cadastro da permissão sejam atualizados. Após selecionar esta ação para um determinado registro na tabela de “Permissões Cadastradas”, o sistema exibirá a página conforme a figura 18.
+
+image::prints/editar-usuario.png[scaledwidth=100%, title="Tela de edição de Permissões"]
+
+Note que nessa página é exibido um formulário contendo os campos da permissão selecionada. Para alterá-los, basta modificar o conteúdo dos campos desejados.
+
+Para concluir a alteração dos dados, é necessário que seja selecionado o botão “icon:check[] *Salvar* ”.
+
+Ao finalizar o sistema redirecionará o usuário à tela de pesquisa de permissões e uma mensagem de confirmação será exibida.
+
+==== Excluir
+
+O sistema também permite a exclusão de permissões já cadastradas. Para realizar esta ação, basta selecionar a ação “ icon:trash[] *Excluir* ” referente à permissão de acesso que deseja remover do sistema.
+
+Ao selecionar a referida ação, o sistema exibe uma mensagem de diálogo para que seja confirmada ou não a exclusão da permissão.
+
+image::prints/excluir-usuario.png[scaledwidth=100%, title="Modal excluir permissões"]
+
+Para confirmar a exclusão, basta que seja selecionado o botão image:btn/excluir-permissao.png[] exibido na caixa de diálogo. Caso não deseje realizar tal exclusão, é necessário cancelar ou fechar a caixa de diálogo.
+
+=== Visualizar
+
+Selecionando a ação “icon:eye[] *Visualizar* ”, o sistema exibe uma nova página contendo os dados de cadastro do perfil selecionado (Ex: Nome, data do cadastro, avatar do perfil, estado, município, permissões vinculadas ao perfil). A Figura 17 apresenta a página exibida após a seleção desta ação.
+
+image::prints/login.png[scaledwidth=100%, title="Modal visualizar permissões"]
+
+=== Cadastrar Permissões
+
+O cadastro de permissões permite a inserção de novas permissões de acesso ao SIL. Estas permissões visam definir níveis de acesso às determinadas funcionalidades que compõem o sistema.
+
+A forma de acesso a esta página de cadastro, é através do botão image:btn/cadastrar-permissao.png[] disponibilizado na página de pesquisa por permissões.
+
+Ao acessar o sistema disponibilizará a página para que seja efetuado o cadastro de permissão de acesso. Essa página é mostrada na figura abaixo.
+
+image::prints/login.png[scaledwidth=100%, title="Tela editar permissões"]
+
+Para realizar o cadastro, é necessário que o usuário forneça os dados obrigatórios solicitados nos campos da página. São solicitados o módulo, nome da permissão, código da permissão. Os campos de preenchimento obrigatório são sinalizados por um asterisco.
+
+Após o preenchimento dos campos, basta selecionar o botão  image:btn/cadastrar.png[] para que o cadastro seja concluído com sucesso, assim o sistema irá redimensionar o usuário para a página de "Gerênciar Permissões" e exibirá uma mensagem de sucesso.
+
+== Perfis
+
+Esta funcionalidade permite que seja realizada a gestão perfis de usuário no SIL. Será possível pesquisar, editar, excluir ou cadastrar novos perfis no sistema.
+
+=== Gerenciar Perfis
+
+O acesso a essa página se dá através da seleção do item de menu “Perfil”.
+
+Também é disponibilizado nessa página um atalho para a funcionalidade de cadastro de novo perfil. Para isso, basta selecionar o botão image:btn/cadastrar-perfil.png[]  que então o usuário será redirecionado à tela de cadastro.
+
+==== Pesquisar Perfil
+
+Para efetuar uma pesquisa por um perfil, deve ser inserido no campo de pesquisa o nome do perfil que se deseja buscar. Para que a busca seja executada, basta selecionar o botão  image:btn/filtrar.png[] ou precionar a tecla ENTER.
+
+O usuário poderá, ordenar os resultados encontrados pela busca, para isso basta clicar no nome das colunas da tabela como "Nome" "Módulo" ou "Data de Cadastro" e irá aparecer um ícone indicando se a lista está ordenada no formato crescente(^) ou descrecente( \/ ).
+
+Para cada registro encontrado e exibido na tabela de “Perfil Cadastrado”, é possível observar, por meio das colunas da tabela, o nome do perfil. Além disso, na última coluna o sistema disponibiliza 3 ações no que poderão ser selecionadas pelo usuário. Essas ações são:
+
+
+NOTE: Essas ações vão depender das permissões que o usuário possui no sistema.
+
+==== Visualizar
+
+Selecionando a ação “Visualizar ()”, o sistema exibe uma nova página contendo os dados de cadastro do perfil selecionado (Ex: Nome, data do cadastro, avatar do perfil, estado, município, permissões vinculadas ao perfil). A Figura 61 apresenta a página exibida após a seleção desta ação.
+
+image::prints/visualizar-usuario.png[scaledwidth=100%, title="Modal visualizar perfil"]
+
+==== Editar
+
+Voltando à página de pesquisa de perfis, ao selecionar a ação “Editar ()”, o sistema permite que os dados de cadastro do perfil sejam atualizados. Ao selecionar esta ação para um determinado registro na tabela de “Módulos Cadastrados”, o sistema exibirá a página conforme a Figura abaixo.
+
+image::prints/editar-usuario.png[scaledwidth=100%, title="Tela editar perfil"]
+
+Note que nessa página é exibido um formulário contendo os campos de dados do perfil selecionado. Para alterá-los, basta modificar o conteúdo dos campos desejados.
+
+==== Excluir
+
+De volta à tela de pesquisa de perfis, o sistema também permite a exclusão de perfis já cadastrados. Para realizar esta ação, basta selecionar a ação “Excluir ()” referente ao perfil de usuário que deseja remover do sistema.
+
+Ao selecionar a referida ação, o sistema exibe uma mensagem de diálogo para que seja confirmada ou não a exclusão do perfil. A Figura 65 apresenta esta mensagem.
+
+image::prints/excluir-usuario.png[scaledwidth=100%, title="Modal excluir perfil"]
+
+Para confirmar a exclusão, basta que seja selecionado o botão image:btn/excluir-perfil.png[] exibido na caixa de diálogo. Caso não deseje realizar tal exclusão, é necessário fechar a caixa de diálogo que automaticamente a ação de exclusão será cancelada.
+
+
+
+=== Cadastrar Perfil
+
+O Cadastro de Perfil permite a inserção de novos perfis no SIL. A forma de acesso a esta página de cadastro, é através do atalho de image:btn/cadastrar-perfil.png[] disponibilizado na página de "Gerenciar Perfis".
+
+Para realizar o cadastro, é necessário que o usuário forneça os dados obrigatórios solicitados nos campos da página. São solicitados o nome, avatar, municípios e permissões. Os campos de preenchimento obrigatório são sinalizados por um asterisco.
+
+Segue a seguir uma imagem da tela image:btn/cadastrar-perfil.png[]
+
+image::prints/editar-usuario.png[scaledwidth=100%, title="Tela Cadastrar perfil"]
+
+NOTE: Esse formulário possui o botão "Limpar", caso o usuário desejar começar o cadastro novamento basta acessar o mesmo e ele irá limpar todos os campos do formulário.
+
+Após o preenchimento dos campos, basta selecionar o botão image:btn/cadastrar.png[] para que o cadastro seja concluído com sucesso.
+
+Após a finalização do cadastro, o sistema exibirá uma mensagem confirmando a inserção do novo perfil no sistema. Além disso, a tabela contendo os perfis já cadastrados será automaticamente atualizada com esse novo registro.

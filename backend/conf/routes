@@ -1,0 +1,150 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Secure
+
+GET     /login                                    Secure.login
+POST    /login                                    Secure.authenticate
+GET     /logout                                   Secure.logout
+POST    /redirecionarModulo                       Secure.redirectToModulosWithSessionKey
+POST    /autenticarSenha                          Secure.isPasswordAuthenticated
+
+# Usuários
+
+GET     /usuario/acoesPermitidas                  Usuarios.getAcoesPermitidas
+POST    /usuario                                  Usuarios.create
+PUT     /usuario                                  Usuarios.update
+GET     /usuario/{id}/authenticated               Usuarios.isUserAuthenticated
+GET     /usuario/validarToken/{token}             Usuarios.validateToken
+# PUT     /usuario/definirSenhaPrimeiroAcesso       Usuarios.createPassword
+# GET     /usuario/emailRedefinirSenha/{login}      Usuarios.mailResetPassword
+# PUT     /usuario/redefinirSenha                   Usuarios.resetPassword
+PUT     /usuario/ativar                           Usuarios.activate
+GET     /usuario/modulosPermitidos/{login}        Usuarios.getModulosPermitidos
+# POST    /usuario/alterarSenha                     Usuarios.updatePassword
+GET     /usuario/setores/{login}                  Usuarios.getSetoresUsuario
+GET     /usuario/verificarCadastro/{login}       Usuarios.verificarCadastro
+GET     /usuario/verificarPessoa/{login}       Usuarios.verificarPessoa
+
+# Agenda Desativação
+
+POST    /agendaDesativacao                        AgendasDesativacao.create
+
+# Modulos
+
+POST    /modulo                                     Modulos.create
+PUT     /modulo/{idModulo}                          Modulos.newCredentials
+POST    /modulos                                    Modulos.findByFilter
+GET     /modulo/{idModulo}                          Modulos.findById
+POST    /modulos/validate                           Modulos.validateModuloFile
+GET     /modulos/{idModulo}/usuarioLogado/perfis    Modulos.findPerfisUsuarioLogado
+GET     /modulos/{idModulo}/setores                 Modulos.findSetoresModulo
+GET     /modulos/{id}/logotipo                      Modulos.getLogotipo
+GET     /modulos                                    Modulos.findAll
+GET     /modulos/buscaModuloComPerfis               Modulos.buscaTodosModulosComPerfis
+
+# Perfis
+
+POST    /perfis                                     Perfis.findByFilter
+GET     /perfil/{id}                                Perfis.find
+
+# Uploads
+
+POST    /arquivo/upload                           Uploads.uploadArquivo
+
+# Setores
+
+GET     /setores                                  Setores.findAll
+GET     /setoresAtivos                            Setores.findAllAtivos
+GET     /setor/{id}                               Setores.find
+POST    /setor                                    Setores.create
+POST    /setores                                  Setores.findByFilter
+DELETE  /setor/{id}                               Setores.remove
+PUT     /setor                                    Setores.update
+PUT     /setor/ativar                             Setores.activate
+PUT     /setor/desativar                          Setores.deactivate
+
+# ---------------------------------------------------------------
+#                          externals
+# ---------------------------------------------------------------
+
+# Secure
+
+POST    /external/login                         Secure.authenticate
+POST    /external/modulo/validate               Secure.validateModulo
+POST    /external/session/validate              Secure.isLoggedWithCookie
+POST    /external/token                         Secure.getAccessToken
+POST    /external/token/validate                Secure.isAccessTokenValid
+POST    /external/session/estaLogado            Secure.isLogged
+POST    /external/session/verificarPorLogin     Secure.externalVerifyAuthenticatedUser
+POST    /external/modulo/buscarIdPorToken       Secure.findIdModuloByToken
+POST    /external/modulo/allowed/access         Secure.isAllowedAccess
+
+# Usuários
+
+GET     /external/usuario/buscarPorLogin/{login} Usuarios.externalFindByLogin
+GET     /external/usuario/verificar/{cpf}        Usuarios.verificarCpf
+POST    /external/usuario                        Usuarios.create
+PUT     /external/usuario                        Usuarios.update
+PUT     /external/usuario/ativar                 Usuarios.activate
+DELETE  /external/usuario/{login}                Usuarios.externalRemoveByLogin
+# POST    /external/usuario/alterarSenha           Usuarios.updatePassword
+POST    /external/usuario/MCUBuscarPorSessionKey Usuarios.MCUFindBySessionKey
+POST    /external/usuario/buscaPorSessionKey     Usuarios.externalFindBySessionKey
+GET     /external/usuario/perfil/{codigoPerfil}                        Perfis.findUsuariosByPerfil
+GET     /external/usuario/perfil/{codigoPerfil}/{siglaSetores}         Perfis.findUsuariosByPerfilAndSetores
+GET     /external/usuario/{siglaModulo}          Usuarios.getUsuariosByModulo
+
+# Perfis
+
+GET     /external/perfis                                    Perfis.findAll
+POST    /external/perfil/buscarPorCodigoEModuloId           Perfis.findByCodigoAndModuleId
+
+# Modulos
+GET     /external/modulos/buscaModuloComPerfis              Modulos.buscaTodosModulosComPerfis
+
+# Agenda Desativação
+
+POST    /external/agendaDesativacao              AgendasDesativacao.create
+
+# Setores
+GET     /external/setoresAtivos                    Setores.findAllAtivos
+GET     /external/setores                          Setores.findAll
+GET     /external/setor/{id}                       Setores.find
+POST    /external/setor                            Setores.create
+POST    /external/setores                          Setores.findByFilter
+DELETE  /external/setor/{id}                       Setores.remove
+PUT     /external/setor                            Setores.update
+PUT     /external/setor/ativar                     Setores.activate
+PUT     /external/setor/desativar                  Setores.deactivate
+GET     /external/setor/nivel/{siglaSetor}/{nivel} Setores.getSiglaSetoresByNivel
+GET     /external/setor/sigla/{siglaSetor}         Setores.getSetorBySigla
+
+# PessoaPortalSema
+GET     /external/recuperaDadosPessoa           PessoaPortalSema.recuperaDadosPessoa
+
+# ---------------------------------------------------------------
+#                          public
+# ---------------------------------------------------------------
+
+# Usuários
+
+GET     /public/temUsuarioComLogin/{login}         Usuarios.hasUsuarioWithLogin
+GET     /public/pessoaEstaBloqueado/{login}        Usuarios.isPessoaBloqued
+
+## Versão do sistema
+GET     /versao                                          Versao.versao
+
+# ROTA PARA OS ARQUIVOS ESTÁTICOS
+# IMPORTANTE!!! MANTER SEMPRE O BLOCO ABAIXO NO FINAL DO ARQUIVO!
+
+GET     /tmp/                                    staticDir:tmp
+GET     /scripts/                                staticDir:public/scripts
+GET     /styles/                                 staticDir:public/styles
+GET     /images/                                 staticDir:public/images
+GET     /fonts/                                  staticDir:public/fonts
+GET     /manual/                                 staticDir:public/manual
+GET     /views/                                  staticDir:public/views
+GET     /public/                                 staticDir:public
+GET     /                                        staticDir:public/views

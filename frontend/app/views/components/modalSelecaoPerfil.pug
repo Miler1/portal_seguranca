@@ -1,0 +1,68 @@
+div#modalSelecaoPerfil.modal.fade
+
+	div.modal-dialog
+
+		div.modal-content(ng-if="habilitaSelecaoSetor")
+
+			div.modal-header
+
+				div.col-xs-12.col-md-12.col-lg-12
+
+					button.close(type='button', data-dismiss='modal')
+							span(aria-hidden='true') ×
+
+				div.col-xs-12.col-md-12.col-lg-12
+
+					.col-xs-6.col-md-6.col-lg-6
+						center
+							h4.modal-title PERFIL
+
+					.col-xs-6.col-md-6.col-lg-6
+						center
+							h4.modal-title SETOR
+
+			div.modal-body.col-xs-12.col-md-12.col-lg-12(id="modal-body" style="background-color: white;")
+
+				div.perfil-setor.col-xs-6(class="{{ perfis.length >= setores.length ? 'caixa-esquerda' : '' }}")
+					div(ng-repeat="perfilLista in perfis"  name="perfils")
+						button.btn-perfil.btn-full-width(class="{{ perfil && (perfil.id == perfilLista.id) ? 'botao-ativo' : '' }}",
+								ng-click="setarPerfil(perfilLista)", ng-selected="perfil.id == perfilLista.id") {{perfilLista.nome}}
+
+				div.perfil-setor.col-xs-6(class="{{ setores.length > perfis.length ? 'caixa-direita' : '' }}")
+					div(ng-if="setores.length > 0" ng-repeat="setorLista in setores"  name="setores")
+						button.btn-perfil.btn-full-width(class="{{ setor && (setor.id == setorLista.id) ? 'botao-ativo' : '' }}",
+								ng-click="setarSetor(setorLista)") {{setorLista.nome}}
+					div(ng-if="setores.length == 0 && perfil.setores.length > 0" )
+						center
+							p.text-center Seu usuário não possui setor para acessar esse perfil
+
+					div(ng-if="setores.length == 0 && perfil.setores.length == 0" )
+						center
+							p.text-center Não é preciso selecionar setor para este perfil.
+
+			center
+				.pull-center
+					button.btn.btn-primary.btn-raised(ng-if= "perfil.setores.length > 0" , ng-disabled="!setor || !perfil", type='submit', ng-click="acessarComPerfilSetor()")
+						|	Acessar
+					button.btn.btn-primary.btn-raised(ng-if= "perfil.setores.length == 0", ng-disabled="!perfil", type='submit', ng-click="selecionarPerfil(perfil)")
+						|	Acessar
+
+
+		div.modal-content(ng-if="!habilitaSelecaoSetor")
+
+			div.modal-header
+
+				button.close(type='button', data-dismiss='modal')
+					span(aria-hidden='true') ×
+
+				h3.modal-title Selecione o perfil que deseja utilizar:
+
+			div.modal-body(id="modal-body")
+
+				div(ng-repeat="perfil in perfis")
+
+					center
+						a.color-inherit.no-text-decoration(type="button", ng-click="selecionarPerfil(perfil)")
+							img(ng-src="{{perfil.avatar}}", data-profile="{{perfil.id}}", title='{{perfil.nome}}')
+							br
+							label.pointer {{perfil.nome}}

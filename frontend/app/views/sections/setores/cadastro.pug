@@ -1,0 +1,79 @@
+include ../../components/fieldErrors.pug
+
+h1.page-header()
+	| Cadastro de setor
+
+.cards-horizontal
+
+	.card
+
+		h3 Dados gerais
+
+		form(name="form", novalidate)
+			div.col-lg-12
+				.row
+					.col-md-12
+						.form-group
+							label(for='nome') Nome do setor:*
+							input.form-control#nome(name="nome", type="text", ng-model="setor.nome", required, maxlength="200")
+							+fieldErrors(field="nome", errors=["required"])
+
+				.row
+					.col-md-6
+						.form-group
+							label(for='sigla') Sigla do setor:*
+							input.form-control#sigla(name="sigla", type="text", ng-model="setor.sigla", required, maxlength="10")
+							+fieldErrors(field="sigla", errors=["required"])
+
+					.col-md-3
+						.form-group
+							label(for='tipo_setor') Tipo do setor:*
+							select.form-control#tipo_setor(name='tipo_setor', ng-options="tipo.codigo as tipo.nome for tipo in tiposSetor", ng-model="setor.tipo", required)
+								option(value="" disabled selected style="display: none;") Selecione
+							+fieldErrors(field="tipo_setor", errors=["required"])
+
+					.col-md-3
+						.form-group
+							label(for='setor_pai') Setor pai:
+							select.form-control#setor_pai(name='setor_pai', ng-options="setorPai.id as setorPai.nome for setorPai in listaSetoresPai", ng-model="setor.setorPai", ng-disabled="!listaSetoresPai || listaSetoresPai.length === 0")
+								option(value="" disabled selected style="display: none;") Selecione
+
+				.row
+					.col-md-6
+						label(for='modulos') Módulos:
+
+						select.form-control#modulos(name='modulos', ng-options='modulo as modulo.nome for modulo in modulos', ng-model='modulo', ng-change='carregarPerfis(modulo)')
+							option(value='', disabled, selected, style='display: none;')
+								| Selecione
+
+					.col-md-6
+						.form-group
+							label(for='perfis') Perfis de usuário:
+							select.form-control#perfis(name='perfis', ng-options='perfil.nome for perfil in perfisUsuario', ng-disabled="perfisUsuario.length < 1 || !modulo", ng-model='perfil', ng-change='adicionarPerfil(perfil)', ng-required=pessoa + '.isUsuario && ( !' + pessoa + '.usuario || ' + pessoa + '.usuario.perfis.length === 0)')
+								option(value='', disabled, selected, style='display: none;')
+									| Selecione
+
+
+				.row(style='margin-top:25px; margin-bottom: 50px')
+					.col-lg-12.col-sm-12
+						label(for='perfisSelecionados') Perfis selecionados:
+						.md-chips.no-padding#perfisSelecionados(name='perfisSelecionados', ng-if='setor.perfis')
+							.md-chip(ng-repeat="perfil in setor.perfis")
+								span
+									| {{perfil.nome}}&nbsp;
+								button.md-chip-remove(type='button', ng-click='removerPerfil(perfil)')
+						div(name='perfisSelecionados', ng-if='setor.perfis.length == 0')
+							center
+								span
+									| Não existem perfis selecionados.
+
+			button.btn.btn-raised.btn-primary.pull-right(type='submit', ng-click="salvarSetor()", ng-if="setor.id == null && verificarPermissao(AcaoSistema.CADASTRAR_SETOR)")
+				i.material-icons save
+				|	Salvar
+
+			button.btn.btn-raised.btn-primary.pull-right(type='submit', ng-click="salvarSetor()", ng-if="setor.id != null && verificarPermissao(AcaoSistema.EDITAR_SETOR)")
+				i.material-icons save
+				|    Salvar
+
+			button.btn.btn-raised.btn-default.pull-left(type="button", ng-click="voltar()", ng-if="verificarPermissao(AcaoSistema.PESQUISAR_SETOR)")
+				|	Voltar

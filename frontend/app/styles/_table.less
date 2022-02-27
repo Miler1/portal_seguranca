@@ -1,0 +1,189 @@
+.table.table-striped {
+
+	& > thead > tr > th {
+
+		border-bottom: 1px solid @cor-cinza-claro;
+		font-weight: 300;
+
+	}
+
+	tbody > tr:nth-of-type(odd) {
+		background-color: @bg;
+	}
+
+	tbody > tr:nth-of-type(even) {
+		background-color: @white;
+	}
+
+	tr {
+
+		i.material-icons {
+			font-size:  16px;
+		}
+
+		&:last-child {
+			border-bottom: solid 1px #ddd;
+		}
+
+		&>th {
+
+			i.material-icons {
+				margin-left: 5px;
+			}
+
+			&.col-fixed-50 {
+				width: 40px;
+			}
+
+		}
+
+	}
+
+	th {
+
+		.text {
+			position: relative;
+		}
+
+		.text span {
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			position: absolute;
+			left: 0;
+			right: 0;
+		}
+
+		.text:before {
+			content: '';
+			display: inline-block;
+		}
+	}
+
+	td {
+
+		vertical-align: middle;
+		color: @cor-texto-secundario;
+		font-weight: 400;
+
+		.text {
+			position: relative;
+		}
+
+		span.ativo,.inativo {
+			text-align: center;
+			width: 50px;
+		}
+
+		.text span {
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			position: absolute;
+			left: 0;
+			right: 0;
+		}
+
+		.text:before {
+			content: '';
+			display: inline-block;
+		}
+
+		.btn {
+			margin: 0px;
+		}
+
+		&.user-info {
+
+			i.material-icons {
+				font-size:  24px;
+				margin-left: 5px;
+			}
+
+		}
+
+		&.user-info, a.user-info {
+
+			i.inativo {
+				color: @cor-vermelho;
+			}
+
+			i.ativo {
+				color: @cor-verde;
+			}
+
+			i.inexistente {
+				color: @cor-cinza-escuro;
+			}
+
+		}
+
+		.btn-float-right {
+			float: right;
+			margin-right: 20px;
+		}
+
+	}
+}
+
+.table-modal {
+
+	td {
+		vertical-align: middle;
+		color: @cor-texto-secundario;
+		font-weight: 400;
+	}
+
+	td.item {
+		background-color: @bg;
+		width: 20%;
+	}
+
+	td.descricao {
+		width: 80%;
+	}
+}
+
+.table-permissao-perfil {
+
+	padding-right: 15px;
+
+	.table-perfil {
+
+		padding-left: 0;
+		margin-left: -1px;
+
+		th {
+
+			min-width: 150px;
+			text-align: center;
+
+		}
+
+		td {
+
+			text-align: center;
+
+		}
+
+		td i {
+
+			font-size: 14px !important;
+
+		}
+
+	}
+
+	.table-permissao {
+
+		padding-right: 0;
+
+		tbody {
+
+			border-right: 2px solid @cor-cinza-claro;
+
+		}
+
+	}
+
+}

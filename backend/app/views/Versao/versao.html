@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>${play.configuration.get("application.name")}</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+          crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+
+    <style>
+        body {
+            padding-top: 70px;
+            background-color: #4C974C;
+        }
+        .jumbotron {
+            background-color: whitesmoke;
+            -webkit-box-shadow: 10px  10px 6px -6px #3333336b;
+            -moz-box-shadow: 10px 10px 6px -6px #3333336b;
+            box-shadow: 10px  10px 6px -6px #3333336b;
+        }
+        .table-bg{
+            background-color: white;
+        }
+        @media(min-width: 1200px){
+            .container {
+                width: 600px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="jumbotron">
+        <div class="text-center">
+            <img width="100px;" src="images/brasao_am.png" class="img-thumbnail">
+            <h2 class="text-uppercase"><strong>${play.configuration.get("application.name")}</strong></h2>
+        </div>
+        <table id="conteudoGeral" class="table table-bordered table-bg">
+            <tbody>
+            <tr>
+                <td class="col-md-5">BRANCH / TAG</td>
+                <td><label class="text-uppercase">${play.configuration.get("server.version")}</label></td>
+            </tr>
+            <tr>
+                <td class="col-md-5">DATA DO DEPLOY</td>
+                <td><label class="text-uppercase">${play.configuration.get("server.update")}</label></td>
+            </tr>
+            <tr id="tr-autor">
+                <td class="col-md-5">AUTOR</td>
+                <td><label id="autor" class="text-uppercase"></label></td>
+            </tr>
+            <tr>
+                <td class="col-md-5">PATH</td>
+                <td><label class="text-uppercase">${play.configuration.get("http.path")}</label></td>
+            </tr>
+            <tr id="tr-porta">
+                <td class="col-md-5">PORTA</td>
+                <td><label id="porta" class="text-uppercase"></label></td>
+            </tr>
+            *{<tr>}*
+            *{<td class="col-md-5">DIRETORIO BASE</td>}*
+            *{<td><label class="text-uppercase">${play.configuration.get("sistema.diretorioBase")}</label></td>}*
+            *{</tr>}*
+            <tr>
+                <td class="col-md-5">VERSÃO DO PLAY</td>
+                <td><label class="text-uppercase">${play.configuration.get("versao.play")}</label></td>
+            </tr>
+            <tr>
+                <td class="col-md-5">VERSÃO DO JAVA</td>
+                <td><label class="text-uppercase">${play.configuration.get("java.source")}</label></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.10.0/js/md5.js"></script>
+<script>
+
+    window.addEventListener("keydown", keysPressed, false);
+    window.addEventListener("keyup", keysReleased, false);
+
+    var secret = 'lemaf';
+
+    var keys = [];
+    var keySequence = '';
+    var camposEspecificos = [
+        {
+            id: 'autor',
+            info: '${play.configuration.get("deploy.user.gitName")}'
+        },
+        {
+            id: 'porta',
+            info: '${play.configuration.get("http.port")}'
+        }
+    ]
+
+    function keysPressed(e) {
+
+        keys[e.keyCode] = true;
+
+        keySequence += e.key;
+
+        if(keySequence.length > secret.length) {
+            keySequence = keySequence.substring(keySequence.length - secret.length);
+        }
+
+        if (keys[16] && keys[17] && keys[18]) {
+            showEspecifico();
+        }
+        else if(keySequence === secret){
+            showEspecifico();
+        }
+        else{
+            hideEspecifico();
+        }
+    }
+
+    function keysReleased(e) {
+
+        keys[e.keyCode] = false;
+
+        if (keys[16] && keys[17] && keys[18]) {
+            showEspecifico();
+        }
+        else if(keySequence === secret){
+            showEspecifico();
+        }
+        else{
+            hideEspecifico();
+        }
+    }
+
+    function showEspecifico(){
+        camposEspecificos.forEach(function(campo){
+            var htmlElement = $(document.getElementById(campo.id));
+            htmlElement.text(campo.info);
+            var trHtmlElement = document.getElementById("tr-" + campo.id);
+            trHtmlElement.style.display = "table-row";
+        });
+    }
+
+    function hideEspecifico(){
+        camposEspecificos.forEach(function(campo){
+            var htmlElement = $(document.getElementById(campo.id));
+            htmlElement.text("");
+            var trHtmlElement = document.getElementById("tr-" + campo.id);
+            trHtmlElement.style.display = "none";
+        });
+    }
+
+    hideEspecifico();
+
+</script>
+
+</body>
+
+</html>

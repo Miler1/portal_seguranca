@@ -1,0 +1,135 @@
+h1.page-header(ng-if="verificarPermissao(AcaoSistema.VISUALIZAR_MODULO)")
+	| Visualização de módulo
+
+.cards-horizontal(ng-if="verificarPermissao(AcaoSistema.VISUALIZAR_MODULO)")
+
+	.card.card-modulo-dados
+
+		h3 Dados gerais
+
+		div.row
+
+			div.col-lg-12
+
+				div.linhaVisualizar
+					strong
+						| Nome:
+
+					span(ng-bind='modulo.nome')
+
+				div.linhaVisualizar
+					strong
+						| Sigla:
+
+					span(ng-bind='modulo.sigla')
+
+				div.linhaVisualizar
+					strong
+						| URL de acesso:
+
+					span(ng-bind='modulo.url')
+
+				div.linhaVisualizar
+					strong
+						| Descrição:
+
+					span(ng-bind='modulo.descricao')
+
+				div.linhaVisualizar
+					strong
+						| Cadastro de perfis:
+
+					span(ng-if='modulo.cadastrarPerfis')
+						| O módulo permite cadastro de novos perfis
+
+					span(ng-if='!modulo.cadastrarPerfis')
+						| O módulo não permite cadastro de novos perfis
+
+				div.linhaVisualizar
+					strong
+						| Obrigatória autenticação por token:
+
+					span(ng-if='modulo.loginTokenObrigatorio')
+						| Sim
+
+					span(ng-if='!modulo.loginTokenObrigatorio')
+						| Não
+
+				div.linhaVisualizar
+					strong
+						| Status:
+					span.badge.badge-success(ng-if="modulo.ativo")
+						| Ativo
+					span.badge.badge-error(ng-if="!modulo.ativo")
+						| Inativo
+
+	.card.card-modulo-imagem
+
+		h3 Imagem do módulo
+
+		div.row
+
+			div.col-lg-12
+
+				img#modulo-img(ng-src="modulos/" + '{{modulo.id}}' + "/logotipo")
+
+.card(ng-if="verificarPermissao(AcaoSistema.VISUALIZAR_MODULO)")
+
+	h3 Permissão e perfis
+
+	label Exibir perfis:
+
+	.row.box-multiselect(ng-if="combobox.perfis")
+
+		multiselect.multiselect(ng-model="combobox.perfis", options="modulo.perfis", show-tooltip="true", placheholder="placeholder", show-select-all="true", id-prop="nome", display-prop="nome", labels="labels")
+
+
+	.row.table-permissao-perfil
+
+		.col-md-5.table-permissao.pull-left
+
+			table.table.table-hover.table-striped
+
+				thead
+					tr
+						th.col-md-7
+							| Permissão
+						th.col-md-5
+							| Código
+				tbody
+					tr(ng-repeat = "permissao in modulo.permissoes")
+						td
+							.text(uib-tooltip="{{ permissao.nome }}", tooltip-placement="top-left")
+								span {{ permissao.nome }}
+						td
+							.text(uib-tooltip = "{{ permissao.codigo }}", tooltip-placement="top-left")
+								span {{ permissao.codigo }}
+
+		.col-md-7.table-perfil.table-responsive.no-padding-sides
+
+			table.table.table-hover.table-striped
+
+				thead(ng-if="combobox.perfis.length > 0")
+					tr
+						th(ng-repeat="perfil in combobox.perfis")
+							.text(ng-if="perfil", uib-tooltip = "{{ perfil.nome }}", tooltip-placement="bottom")
+								span {{ perfil.nome }}
+
+				thead(ng-if='!combobox.perfis || combobox.perfis.length == 0')
+					tr
+						th(ng-repeat="perfil in modulo.perfis")
+							.text(uib-tooltip = "{{ perfil.nome }}", tooltip-placement="bottom")
+								span {{ perfil.nome }}
+
+				tbody
+					tr(ng-repeat = "permissao in modulo.permissoes track by $index")
+						td(ng-repeat = "perfil in permissao.perfilChecked track by $index")
+							i.material-icons(ng-if='perfil') done
+							i.material-icons(ng-if='!perfil')
+
+//button.btn.btn-raised.btn-primary.pull-right(type="button", ng-click="", ng-if="verificarPermissao(AcaoSistema.VISUALIZAR_MODULO)")
+	i.material-icons mode-edit
+	|	Editar
+
+button.btn.btn-raised.btn-default.pull-left(type="button", ng-click="voltar()", ng-if="verificarPermissao(AcaoSistema.VISUALIZAR_MODULO)")
+	|	Voltar

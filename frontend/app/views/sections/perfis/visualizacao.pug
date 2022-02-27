@@ -1,0 +1,54 @@
+.responsive
+	h1.page-header(ng-if="verificarPermissao(AcaoSistema.VISUALIZAR_PERFIL)")
+		| Visualização de perfil
+
+.cards-vertical(ng-if="verificarPermissao(AcaoSistema.VISUALIZAR_PERFIL)")
+
+	.card
+
+		div.row
+
+			div.col-lg-1.col-md-2
+
+				img#perfil-img(ng-src="{{perfil.avatar}}")
+
+			div.col.lg-11.col-md-10
+				div.row
+
+					div.col-md-12
+						h3(ng-bind='perfil.nome')
+
+				div.row
+
+					div.col-md-12
+						span.badge.badge-success(ng-if="perfil.ativo") Ativo
+						span.badge.badge-error(ng-if="!perfil.ativo") Inativo
+
+		div.row.row-margin-top
+			div.col-md-12
+
+				div.panel.panel-default(ng-if="verificarPermissao(AcaoSistema.VISUALIZAR_PERFIL)", ng-repeat="modulo in perfil.modulosTemPermissoes")
+
+					div.panel-heading
+
+						h3.panel-title.no-margin-bottom
+
+							a.accordion-toggle(data-toggle="collapse", data-target="#collapse-{{$index}}", data-parent="collapse-{{$index}}")
+								span {{modulo.nome}}&nbsp
+								span.accordion-message(ng-bind="getMensagem(modulo.permissoes)")
+
+					div.panel-collapse.collapse.in(id="collapse-{{$index}}")
+
+						div.panel-body.no-padding
+
+						.md-chips.chips-accordion
+							.md-chip(ng-repeat='permissao in modulo.permissoes', ng-class="permissao.isFromPerfilVisualizar ? 'span-disponible' : 'span-indisponible'")
+								span(ng-if="permissao.isFromPerfilVisualizar") {{permissao.codigo}}
+								span(ng-if="!permissao.isFromPerfilVisualizar") {{permissao.codigo}}
+
+//button.btn.btn-raised.btn-primary.pull-right(type="button", ng-click="", ng-if="verificarPermissao(AcaoSistema.VISUALIZAR_MODULO)")
+	i.material-icons mode-edit
+	|	Editar
+
+button.btn.btn-raised.btn-default.pull-left(type="button", ng-click="voltar()", ng-if="verificarPermissao(AcaoSistema.VISUALIZAR_MODULO)")
+	|	Voltar

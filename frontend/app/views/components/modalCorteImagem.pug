@@ -1,0 +1,12 @@
+div.modal.fade#modalCorteImagem
+	div.modal-dialog
+		div.modal-content
+			div.modal-body
+				div.crop-area
+					ui-cropper(image="imageToCrop", result-image="croppedImage", result-blob="blobCroppedImage", init-max-area="true", result-image-size="172", area-type="square")
+			div.modal-footer.padding-footer
+				button.btn.btn-raised.btn-primary.pull-right(type='button', ng-click="cortarImagem()")
+					| Enviar
+
+				button.btn.btn-raised.btn-default.pull-left(type='button', data-dismiss='modal')
+					| Cancelar

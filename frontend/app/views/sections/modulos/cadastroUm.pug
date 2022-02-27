@@ -1,0 +1,36 @@
+h1.page-header(ng-if="verificarPermissao(AcaoSistema.CADASTRAR_MODULO)")
+	| Cadastro de módulo
+
+.card 
+	h3(ng-if="verificarPermissao(AcaoSistema.CADASTRAR_MODULO)") Configuração
+	label(ng-if="verificarPermissao(AcaoSistema.CADASTRAR_MODULO)") Arquivo de configuração: *
+	div#dropzone-upload.col-md-12.dropzone.dropzone-file.form-group(ng-hide='arquivoAdicionado', tabindex="1")
+		i.material-icons.dropzone-icon file_upload
+		span.clickable
+			|	Clique ou arraste para enviar
+
+	div(ng-show='arquivoAdicionado')
+		.row
+			.col-md-12
+				table.table.table-striped
+					thead
+						tr
+							th.col-md-10 Nome do arquivo
+							th.col-md-2
+					tbody
+						tr
+							td
+								.text(uib-tooltip="{{file.name}}", tooltip-placement="top-left")
+									span {{file.name}}
+							td
+								button.btn.btn-raised.btn-default.btn-circle.btn-float-right(title='Remover arquivo', ng-click='clearInput()')
+									span.glyphicon.glyphicon-trash
+
+	//button.btn.btn-link.no-padding.btn-shortcut-primary.no-text-transform.pull-right
+		|	Baixar documento de integração de módulos
+
+button.btn.btn-raised.btn-primary.pull-right(type="button", ng-click="validarArquivo()", tabindex="2", ng-if="verificarPermissao(AcaoSistema.CADASTRAR_MODULO)")
+	|	Próximo
+
+button.btn.btn-raised.btn-default.pull-left(type="button", ng-click="voltar()", tabindex="3", ng-if="verificarPermissao(AcaoSistema.CADASTRAR_MODULO)")
+	|	Cancelar

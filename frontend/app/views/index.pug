@@ -1,0 +1,103 @@
+doctype html
+
+html(lang='pt-br')
+
+	head
+
+		title Entrada Única
+
+		meta(charset="UTF-8")
+
+		link(href='images/favicon.ico', rel="shortcut icon")
+
+		<!-- Material Design fonts -->
+		link(href='//fonts.googleapis.com/css?family=Roboto:300,400,500,700', rel="stylesheet")
+
+		link(href='styles/main.css', rel="stylesheet")
+
+		script(src='scripts/jquery.min.js')
+		script(src='scripts/jquery.blockUI.js')
+		script(src='scripts/angular.min.js')
+		script(src='scripts/angular-locale_pt-br.js')
+		script(src='scripts/angular-route.min.js')
+		script(src='scripts/material.min.js')
+		script(src='scripts/ripples.min.js')
+		script(src='scripts/underscore-min.js')
+		script(src='scripts/bootstrap.min.js')
+		script(src='scripts/ui-bootstrap.min.js')
+		script(src='scripts/ui-bootstrap-tpls.min.js')
+		script(src='scripts/angular-input-masks-standalone.min.js')
+		script(src='scripts/angular-cookies.min.js')
+		script(src='scripts/bootstrap-notify.min.js')
+		script(src='scripts/dropzone.min.js')
+		script(src='scripts/ui-cropper.min.js')
+		script(src='scripts/angular-bootstrap-multiselect.min.js')
+
+	body(ng-app="appModule", ng-controller="AppCtrl", ng-cloak)
+
+		include sections/login
+		include sections/usuarios/acesso
+
+		div.container-fluid(ng-if='isRoute("/home")', ng-controller="InicialController")
+			div.row
+				div.col-md-12.col-lg-12.main.no-padding
+					include headerHome
+				.body-view(ng-view,autoscroll="true")
+
+		div.container-fluid(ng-if='!isRoute("/") && !isRoute("/acesso") && !isRoute("/home")', ng-controller="InicialController")
+			div.row
+				div.col-md-3.col-lg-2.sidebar.no-padding.side-menu-container
+					include sidenav
+
+				div.col-md-9.col-lg-10.main.no-padding
+					include header
+					.body-view(ng-view,autoscroll="true")
+
+	//-<!-- build:js  scripts/scripts.min.js -->
+
+	script(src='scripts/app.js')
+	script(src='scripts/appConfig.js')
+
+	script(src='scripts/utils/mascaras.js')
+	script(src='scripts/utils/formatacao.js')
+	script(src='scripts/utils/requestUtil.js')
+	script(src='scripts/utils/loadingUtil.js')
+	script(src='scripts/utils/acaoSistema.js')
+	script(src='scripts/utils/mensagens.js')
+
+	script(src='scripts/components/paginacao.js')
+
+	script(src='scripts/factories/httpInterceptor.js')
+	script(src='scripts/factories/moduloInfo.js')
+	script(src='scripts/factories/sessionStorage.js')
+	script(src='scripts/factories/previousPath.js')
+
+	script(src='scripts/filters/ifFilter.js')
+
+	script(src='scripts/controllers/login.js')
+	script(src='scripts/controllers/inicial.js')
+	script(src='scripts/controllers/home.js')
+	script(src='scripts/controllers/acesso.js')
+	script(src='scripts/controllers/modulo/gestao.js')
+	script(src='scripts/controllers/modulo/cadastroUm.js')
+	script(src='scripts/controllers/modulo/cadastroDois.js')
+	script(src='scripts/controllers/modulo/visualizacao.js')
+	script(src='scripts/controllers/perfil/gestao.js')
+	script(src='scripts/controllers/perfil/visualizacao.js')
+	script(src='scripts/controllers/setor/gestao.js')
+	script(src='scripts/controllers/setor/cadastro.js')
+	script(src='scripts/controllers/setor/visualizacao.js')
+
+	script(src='scripts/services/authService.js')
+	script(src='scripts/services/usuarioService.js')
+	script(src='scripts/services/moduloService.js')
+	script(src='scripts/services/perfilService.js')
+	script(src='scripts/services/setorService.js')
+
+	script(src='scripts/directives/affix.js')
+	script(src='scripts/directives/passwordCheck.js')
+	script(src='scripts/directives/passwordStrength.js')
+
+	script(src='scripts/components/enter.js')
+
+	//-<!-- endbuild -->

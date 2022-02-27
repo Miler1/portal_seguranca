@@ -1,0 +1,31 @@
+div#modalConfirmacao.modal.fade(ng-show="verificarPermissao(AcaoSistema.CRIAR_NOVAS_CREDENCIAIS)")
+
+	div.modal-dialog
+
+		form#confirmForm(name="confirmForm", role="form")
+			
+			div.modal-content
+
+				div.modal-header
+
+					h2.modal-title(id="modal-title") Solicitação de novas credenciais
+
+				div.modal-body(id="modal-body")
+				
+					span.spanExcluir
+						p As novas credenciais substituirão as credenciais existentes e esta ação não poderá ser desfeita.
+						p Para confirmar digite sua senha:
+
+						.form-group.inner-addon.left-addon(ng-class="{ 'has-error' : confirmForm.$submitted && !confirmForm.password.$pristine && senhaEnviada == password && (confirmForm.password.$error.required || senhaInvalida)}")
+							i.material-icons.login  vpn_key
+							input#password.form-control.input-login(name='password', placeholder='Senha' , type='password', ng-model='password', required)
+							p.has-error(ng-show="confirmForm.$submitted && !confirmForm.password.$pristine && confirmForm.password.$error.required")
+								| Campo obrigatório
+							p.has-error(ng-show="confirmForm.$submitted && !confirmForm.password.$pristine && !confirmForm.password.$invalid && senhaInvalida && senhaEnviada == password")
+								| Senha inválida.
+									
+				div.modal-footer.padding-footer
+					div.pull-left
+						button.btn.btn-default.btn-raised(type="button" ng-click="fecharModal('modalConfirmacao')") Cancelar
+					div.pull-right
+						button.btn.btn-primary.btn-raised(type="submit", ng-click="confirmarSolicitacao(idModulo,confirmForm.password.$viewValue)") Confirmar

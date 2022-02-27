@@ -1,0 +1,26 @@
+#modalCriarConta.modal.fade
+
+	.modal-dialog
+
+		.modal-content
+
+			.modal-header
+
+				h3.modal-title(id="modal-title") Criação de conta
+
+			.modal-body(id="modal-body")
+
+				form(name="cadastrarUsuarioForm", role="form")
+
+					.form-group(ng-class="{ 'has-error' : cadastrarUsuarioForm.loginUsuario.$invalid && (cadastrarUsuarioForm.loginUsuario.$viewValue.length == 14 || cadastrarUsuarioForm.loginUsuario.$viewValue.length == 18) && !cadastrarUsuarioForm.loginUsuario.$error.required}")
+						label.control-label(for='login') CPF / CNPJ: *
+						input#loginInputCriarConta.form-control(type='text', tabindex="6", name='loginUsuario', ng-model='loginUsuario', required, ui-br-cpfcnpj-mask, no-validate, on-enter="cadastrarUsuarioForm.$valid ? verificarLogin() : ''")
+						p.help-block(ng-show="cadastrarUsuarioForm.loginUsuario.$invalid && (cadastrarUsuarioForm.loginUsuario.$viewValue.length == 14 || cadastrarUsuarioForm.loginUsuario.$viewValue.length == 18) && !cadastrarUsuarioForm.loginUsuario.$error.required")
+							| Informe um CPF / CNPJ válido
+
+			.modal-footer.padding-footer
+				.pull-left
+					button.btn.btn-default.btn-raised(type="button", tabindex="8", data-dismiss="modal") Cancelar
+
+				.pull-right
+					button.btn.btn-primary.btn-raised(type="submit", tabindex="7", ng-click="verificarLogin()", ng-disabled="cadastrarUsuarioForm.$invalid") Confirmar

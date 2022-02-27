@@ -1,0 +1,3 @@
+[submodule "scripts/play-shell-utils"]
+	path = scripts/play-shell-utils
+	url = git@gitlab.ti.lemaf.ufla.br:utils/play-shell-utils.git

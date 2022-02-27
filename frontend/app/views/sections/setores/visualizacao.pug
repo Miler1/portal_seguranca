@@ -1,0 +1,66 @@
+include ../../components/fieldErrors.pug
+
+h1.page-header()
+	| Visualização de setor
+
+.cards-horizontal
+
+	.card
+
+		h3 Dados gerais
+
+		div.row
+
+			div.col-lg-12
+
+				div.linhaVisualizar
+					strong
+						| Situação:
+
+					span(ng-if="setor.ativo" )
+						span(style="color:green;") Ativo
+
+					span(ng-if="!setor.ativo" )
+						span(style="color:red;") Inativo
+
+				div.linhaVisualizar
+					strong
+						| Nome:
+
+					span(ng-bind='setor.nome')
+
+				div.linhaVisualizar
+					strong
+						| Sigla:
+
+					span(ng-bind='setor.sigla')
+
+				div.linhaVisualizar
+					strong
+						| Tipo de setor:
+
+					span(ng-bind='setor.tipo')
+
+				div.linhaVisualizar
+					strong
+						| Setor pai:
+
+					span(ng-bind="setor.setorPai.nome ? setor.setorPai.nome : 'Não se aplica'")
+
+				div.linhaVisualizar
+					strong
+						| Perfis:
+
+					div.panel-body.no-padding(ng-if="setor.perfis.length > 0")
+
+						.md-chips.chips-accordion
+
+							.md-chip(ng-repeat='perfil in setor.perfis', ng-class="'span-disponible'")
+								span {{perfil.nome}}
+						
+					span(ng-if="setor.perfis.length == 0" ng-bind="'Não existem perfis vinculados a este setor.'")
+						
+						
+
+button.btn.btn-raised.btn-default.pull-left(type="button", ng-click="voltar()", ng-if="verificarPermissao(AcaoSistema.PESQUISAR_SETOR)")
+	|	Voltar

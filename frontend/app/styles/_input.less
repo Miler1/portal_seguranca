@@ -1,0 +1,136 @@
+.form-group {
+
+	.material-icons.login {
+		color: @cor-tema;
+		position: absolute;
+		padding: 5px;
+		pointer-events: none;
+	}
+
+	.input-login {
+		padding-left: 40px;
+	}
+
+}
+
+.label-login {
+	font-weight: lighter;
+}
+
+.label-login-senha {
+	font-weight: lighter;
+	cursor: pointer;
+}
+
+a.icone-certificado-link {
+	text-decoration: none;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 6%;
+	.panel {
+		box-shadow: none;
+		&:hover {
+			box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.12), 0 1px 6px 0 rgba(0, 0, 0, 0.12);
+		}
+	}
+
+	.icone{
+		background-color: #fff;
+		border-radius: 8px;
+
+		&:hover{
+
+			.panel-footer {
+				background-color: @cor-tema;
+			}
+
+		}
+
+		.panel-footer {
+			height: 3.5em;
+			padding: 10px 15px;
+			background-color: @cor-tema;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+
+			h4 {
+				padding: 0px;
+				position: relative;
+			}
+		}
+
+		.panel-body{
+				border-top: 1px solid #ccc;
+				border-left: 1px solid #ccc;
+				border-right:1px solid #ccc;
+				border-top-right-radius: 8px;
+				border-top-left-radius: 8px;
+		}
+
+	}
+
+	.icone-img img{
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		padding: 0px;
+		height: 6.7em;
+	}
+
+	a {
+		text-decoration: none;
+	}
+
+	h4 {
+		color: #FFFFFF;
+		text-decoration: none;
+	}
+
+}
+.form-control {
+	background-color: @white;
+}
+
+.ng-submitted {
+
+	input.ng-invalid {
+		box-shadow: 0px 0px 3px @error;
+		border: 1px solid #B68181;
+
+		~.input-group-addon:last-child, ~.input-group-btn:last-child > .btn,
+				~.input-group-btn:last-child > .btn-group > .btn, ~.input-group-btn:last-child > .dropdown-toggle {
+
+			box-shadow: 0px 0px 3px @error;
+			border: 1px solid #B68181;
+
+		}
+
+	}
+
+	select.ng-invalid {
+		box-shadow: 0px 0px 3px @error;
+		border: 1px solid #B68181;
+	}
+
+	textarea.ng-invalid {
+		box-shadow: 0px 0px 3px @error;
+		border: 1px solid #B68181;
+	}
+
+}
+
+.has-error {
+	color: @error;
+}
+
+.checkbox {
+	label {
+		color: @cor-texto-principal;
+	}
+}
+
+label.radio-inline {
+	color: @cor-texto-principal;
+}

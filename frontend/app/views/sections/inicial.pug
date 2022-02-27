@@ -1,0 +1,9 @@
+div.row.alinhar
+	div(ng-repeat="modulo in modulos", ng-class="classeModulo($index, modulos.length)")
+		a.icone-link(href="", ng-click="loginModulo(modulo)", title="{{modulo.descricao}}")
+			div.panel.icones
+				div.panel-body.imagem
+					div.icone-img
+						img(ng-src="/modulo/{{modulo.id}}/logotipo")
+				div.panel-footer
+					h4.text-center {{modulo.nome}}

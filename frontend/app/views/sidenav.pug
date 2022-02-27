@@ -1,0 +1,67 @@
+#side-nav.navbar.navbar-info.no-margin
+
+	.container-fluid.no-padding
+		.navbar-header
+			a.navbar-brand(href='#/home')
+				img#header-logo(src='images/entrada-unica_cor.png')
+
+div.panel.panel-default
+
+	div.panel-heading
+
+		h3.panel-title
+
+			i.material-icons.sidenav home	
+			a.a-sidenav(ng-click="irHome()") Home
+
+div.panel.panel-default(ng-if="verificarPermissao(AcaoSistema.FILTRAR_PESSOA_FISICA) || verificarPermissao(AcaoSistema.LISTAR_PESSOAS_JURIDICAS) || verificarPermissao(AcaoSistema.LISTAR_EMPREENDIMENTOS)")
+
+	div.panel-heading
+
+		h3.panel-title
+
+			i.material-icons.sidenav description	
+			a.a-sidenav.accordion-toggle(data-toggle="collapse", data-target="#gestaoCadastro", data-parent="#gestaoCadastro") Gestão de cadastro
+
+	div.panel-collapse.collapse.in(id="gestaoCadastro")
+
+		div.panel-body
+
+			ul.nav.nav-sidebar
+				li(ng-if="verificarPermissao(AcaoSistema.FILTRAR_PESSOA_FISICA)")
+					a.pessoasFisicas(ng-click='goToRouteCadastroUnificado("#/pessoaFisica/gestao")')
+						.md-padding Pessoas Físicas
+				li(ng-if="verificarPermissao(AcaoSistema.LISTAR_PESSOAS_JURIDICAS)")
+					a(ng-click='goToRouteCadastroUnificado("#/pessoaJuridica/gestao")')
+						.md-padding Pessoas Jurídicas
+				li(ng-if="verificarPermissao(AcaoSistema.LISTAR_EMPREENDIMENTOS)")
+					a(ng-click='goToRouteCadastroUnificado("#/empreendimento/gestao")')
+						.md-padding Empreendimentos
+
+div.panel.panel-default(ng-if="verificarPermissao(AcaoSistema.PESQUISAR_MODULOS) || verificarPermissao(AcaoSistema.PESQUISAR_PERFIS)")
+
+	div.panel-heading
+
+		h3.panel-title
+
+			i.material-icons.sidenav person
+			a.a-sidenav.accordion-toggle(data-toggle="collapse", data-target="#gestaoAcesso", data-parent="#gestaoAcesso") Gestão de acesso
+
+	div.panel-collapse.collapse.in(id="gestaoAcesso")
+
+		div.panel-body
+
+			ul.nav.nav-sidebar
+				li(ng-class="{'currentRoute' : pathAtual == 'modulo'}", ng-if="verificarPermissao(AcaoSistema.PESQUISAR_MODULOS)")
+					a(ng-click='goToRoute("modulo/gestao")')
+						.md-padding Módulos
+
+			ul.nav.nav-sidebar
+				li(ng-class="{'currentRoute' : pathAtual == 'perfil'}", ng-if="verificarPermissao(AcaoSistema.PESQUISAR_PERFIS)")
+					a(ng-click='goToRoute("perfil/gestao")')
+						.md-padding Perfis
+
+			ul.nav.nav-sidebar
+				li(ng-class="{'currentRoute' : pathAtual == 'setor'}", ng-if="verificarPermissao(AcaoSistema.PESQUISAR_PERFIS)")
+					a(ng-click='goToRoute("setor/gestao")')
+						.md-padding Setores

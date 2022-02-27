@@ -1,0 +1,36 @@
+div#modalCadastroModulo.modal.fade(data-keyboard="false" data-backdrop="static")
+
+	div.modal-dialog
+
+		div.modal-content
+
+			div.modal-header
+
+				h2.modal-title(id="modal-title", ng-if="!novasCredenciais") Cadastro realizado com sucesso
+				h2.modal-title(id="modal-title", ng-if="novasCredenciais") Novas credenciais geradas com sucesso
+
+			div.modal-body(id="modal-body")
+
+				div.no-padding-sides.justify
+
+					p Credenciais de comunicação HTTP (Cliente OAuth 2.0), a serem enviadas para o administrador do módulo {{modulo.nome}}.
+
+					table.table.table-bordered.table-modal 
+						tr
+							td.item
+								.text
+									span Client id:
+							td.descricao
+								.word-wrap
+									span {{oAuthClient.clientId}}
+						tr
+							td.item
+								.text
+									span Client secret:
+							td.descricao
+								.word-wrap
+									span {{oAuthClient.clientSecret}}
+
+			.modal-footer.padding-footer
+				div.pull-right
+					button.btn.btn-primary.btn-raised(type="button", ng-click="irGestaoModulos()") Ok

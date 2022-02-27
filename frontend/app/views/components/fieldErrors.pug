@@ -1,0 +1,15 @@
+mixin fieldErrors()
+
+	- var form = attributes.formName ? attributes.formName : 'form';
+
+	if attributes.field && attributes.errors
+
+		div.has-error(ng-show=form + ".$submitted")
+
+			if (attributes.nameForm != null)
+				form = attributes.nameForm;
+
+			for e in attributes.errors
+				span(ng-show=form + "." + attributes.field + ".$error." + e)
+					p(ng-if="'"+e+"' === 'required'") Campo obrigatório
+					p(ng-if="'"+e+"' === 'pwCheck'") As senhas não conferem

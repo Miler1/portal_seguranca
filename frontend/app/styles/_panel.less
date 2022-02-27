@@ -1,0 +1,102 @@
+.contatos {
+	word-break: break-word;
+}
+
+.linhaVisualizar {
+	margin-bottom: 10px;
+	word-wrap:break-word;
+
+	strong {
+		white-space: nowrap;
+		margin-right: 5px;
+	}
+
+}
+
+.panel {
+
+	&.panel-default > .panel-heading {
+		background-color: @white;
+	}
+
+	.panel-heading {
+
+		background-color: @white;
+
+		.accordion-toggle:after {
+			font-family: 'Material Icons';
+			content: "\e316";
+			float: right;
+			font-size: 20px;
+			color: grey;
+
+		}
+
+		.accordion-toggle.collapsed:after {
+			content: "\e313";
+		}
+
+		.accordion-toggle {
+			text-decoration: none;
+			display: block;
+			padding: 10px 15px;
+			margin: -10px -15px;
+			cursor: pointer;
+		}
+
+		&.panel-heading-white {
+			background: @white;
+			color: @cor-texto-secundario;
+			padding-bottom: 0px;
+
+			.panel-title {
+				margin-bottom: 0px !important;
+			}
+		}
+
+		.material-icons.sidenav {
+			color: @cor-tema;
+			position: absolute;
+			padding-top: 7px;
+			font-size: 20px;
+			pointer-events: none;
+		}
+	
+		.a-sidenav {
+			padding-left: 40px;
+			padding-top: 10px;
+			text-decoration: none;
+			display: block;
+			margin: -10px -15px;
+			cursor: pointer;
+		}
+
+	}
+
+	a {
+		text-decoration: none;
+	}
+
+	.panel-body.no-padding {
+		padding: 0 !important;
+	}
+
+	.panel-body.no-padding-top {
+		padding-top: 0px;
+	}
+
+	.panel-body {
+
+		li {
+			padding-left: 25px;
+		}
+	}
+
+}
+.row-margin-top {
+	margin-top: 25px;
+}
+
+.accordion-message {
+	font-size: 12px;
+}

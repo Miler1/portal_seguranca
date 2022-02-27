@@ -1,0 +1,16 @@
+include ../components/modalSelecaoPerfil.pug
+
+.card.card-home
+
+	h3 Meus sistemas
+	.card-modulo(ng-repeat="modulo in modulosPermitidos")
+
+		img(ng-src="modulos/" + '{{modulo.id}}' + "/logotipo")
+
+		.popover-custom
+
+			a(type="button", uib-popover="{{modulo.descricao}}", popover-title="Sobre o sistema", popover-placement="bottom-left", popover-popup-delay="0", popover-trigger="'mouseenter'", tooltip-class="popover")
+				i.material-icons help_outline
+
+		.div-btn
+			a(type="button", title="{{modulo.nome}}", ng-click="getPerfisSetores(modulo)") {{modulo.sigla}}

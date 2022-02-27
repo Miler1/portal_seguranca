@@ -1,0 +1,112 @@
+include ../../components/paginacao
+include ../../components/modalCadastroModulo
+include ../../components/modalConfirmacao
+
+h1.page-header(ng-if="verificarPermissao(AcaoSistema.PESQUISAR_MODULOS)")
+	| Gestão de módulos
+	button.btn.btn-raised.btn-header.header-btn.pull-right.btn-primary(ng-click="irCadastro()", ng-if="verificarPermissao(AcaoSistema.CADASTRAR_MODULO)")
+		i.material-icons add
+		|	Cadastrar
+
+.card(ng-if="verificarPermissao(AcaoSistema.PESQUISAR_MODULOS)")
+
+	h3 Pesquisar
+
+	form(name="form", novalidate)
+		.row
+			.col-md-6
+				.form-group
+					label(for='nome') Nome:
+					input.form-control(name="nome", type="text", ng-model="filtro.nome", on-enter="listar()")
+
+			.col-md-3
+				.form-group
+					label(for='sigla') Sigla:
+					input.form-control(name="sigla", type="text", ng-model="filtro.sigla", on-enter="listar()")
+
+			.col-md-3
+				.form-group
+					label(for='status_de_usuario') Status:
+					select.form-control(name='status_do_modulo', ng-options="status.valor as status.nome for status in constantes.status", ng-model="filtro.ativo", on-enter="listar()")
+						option(value="" disabled selected style="display: none;") Selecione
+
+	button#botaoPesquisar.btn.btn-raised.btn-sm.btn-primary.pull-right(type="button", ng-click="listar()")
+		i.material-icons search
+		|	Pesquisar
+
+	button.btn.btn-link.no-padding-sides.btn-xs.btn-shortcut-danger.pull-left.btn-blur(type="button", ng-click="limparFiltro()")
+		i.material-icons clear
+		|	Limpar
+
+.card(ng-if="verificarPermissao(AcaoSistema.PESQUISAR_MODULOS)")
+
+	h3 Módulos cadastrados
+
+	table.table.table-hover.table-striped(ng-if='paginacao.totalItens > 0')
+		thead
+			tr
+
+				th.col-fixed-40
+
+				th.col-md-7
+					span.pointer(ng-click='listar("Nome", ordenacaoReversa = !ordenacaoReversa)')
+						| Nome
+					i.pointer.material-icons(ng-click='listar("Nome", ordenacaoReversa)', ng-show='campo !== "Nome"') filter_list
+					span.pointer(ng-show='campo == "Nome"')
+						i.material-icons(ng-click='listar("Nome", ordenacaoReversa = !ordenacaoReversa)', ng-show='!ordenacaoReversa') arrow_downward
+						i.material-icons(ng-click='listar("Nome", ordenacaoReversa = !ordenacaoReversa)', ng-show='ordenacaoReversa') arrow_upward
+				th.col-md-4
+					| Sigla
+				th.col-md-1
+
+				th
+
+		tbody
+			tr(ng-repeat=("modulo in modulos"))
+
+				td
+					div.status-ativo(ng-if="modulo.ativo", uib-tooltip="Ativo", tooltip-placement="top-left")
+					div.status-inativo(ng-if="!modulo.ativo", uib-tooltip="Inativo", tooltip-placement="top-left")
+
+				td
+					.text(uib-tooltip="{{modulo.nome}}", tooltip-placement="top-left")
+						span {{modulo.nome}}
+
+				td
+					.text(uib-tooltip="{{modulo.sigla}}", tooltip-placement="top-left")
+						span {{modulo.sigla}}
+
+				td
+
+					div.dropdown
+						button.btn.btn-primary.btn-xs.btn-outline(type="button", data-toggle="dropdown")
+							|	ações &nbsp;
+							span.caret
+
+						ul.dropdown-menu.dropdown-menu-right(role="menu")
+							li(ng-if="verificarPermissao(AcaoSistema.VISUALIZAR_MODULO)")
+								a(title='Visualizar', ng-click='visualizar(modulo.id)')
+									i.material-icons remove_red_eye
+									|	Visualizar
+							li(ng-if="verificarPermissao(AcaoSistema.CRIAR_NOVAS_CREDENCIAIS)")
+								a(title='Criar Novas Credenciais', ng-click='abrirModalConfirmacao(modulo.id)')
+									i.material-icons vpn_key
+									|	Novas credenciais
+					//		li(ng-if="verificarPermissao(AcaoSistema.EDITAR_MODULO)")
+								a(title='Editar', ng-click='')
+									i.material-icons mode_edit
+									|	Editar
+							li(ng-if="verificarPermissao(AcaoSistema.ATIVAR_DESATIVAR_MODULO)")
+								a.user-info(title='Ativar', ng-if='!modulo.ativo', ng-click='')
+									i.material-icons.ativo person
+									|	Ativar
+
+								a.user-info(title='Desativar', ng-if='modulo.ativo', ng-click='')
+									i.material-icons.inativo person
+									|	Desativar
+
+	+paginacao("paginacao", "módulos")
+
+	center(ng-if='paginacao.totalItens === 0')
+		span
+			| Não existem dados a serem exibidos.

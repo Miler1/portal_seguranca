@@ -1,0 +1,26 @@
+#modalRedefinirSenha.modal.fade
+
+	.modal-dialog
+
+		.modal-content
+
+			.modal-header
+
+				h3.modal-title(id="modal-title") Redefinição de senha
+
+			.modal-body(id="modal-body")
+
+				form(name="redefinirSenhaForm", role="form")
+
+					.form-group(ng-class="{ 'has-error' : redefinirSenhaForm.loginUsuario.$invalid && (redefinirSenhaForm.loginUsuario.$viewValue.length == 14 || redefinirSenhaForm.loginUsuario.$viewValue.length == 18) && !redefinirSenhaForm.loginUsuario.$error.required}")
+						label.control-label(for='login') CPF / CNPJ: *
+						input#loginInput.form-control(type='text', tabindex="6", name='loginUsuario', ng-model='loginUsuario', required, ui-br-cpfcnpj-mask, minlength="14", on-enter="cadastrarUsuarioForm.$valid ? emailRedefinirSenha() : ''")
+						p.help-block(ng-show="redefinirSenhaForm.loginUsuario.$invalid && (redefinirSenhaForm.loginUsuario.$viewValue.length == 14 || redefinirSenhaForm.loginUsuario.$viewValue.length == 18) && !redefinirSenhaForm.loginUsuario.$error.required")
+							| Informe um CPF / CNPJ válido
+
+			.modal-footer.padding-footer
+				.pull-left
+					button.btn.btn-default.btn-raised(type="button", tabindex="8", data-dismiss="modal") Cancelar
+
+				.pull-right
+					button.btn.btn-primary.btn-raised(type="submit", tabindex="7", ng-click="emailRedefinirSenha()", ng-disabled="redefinirSenhaForm.$invalid") Confirmar

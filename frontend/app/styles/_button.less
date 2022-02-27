@@ -1,0 +1,109 @@
+button.btn {
+
+	&.btn-formgroup:not(.btn-group) {
+		margin-top: 22px;
+	}
+
+	&.btn-raised:not(.btn-link), &.input-group-btn .btn.btn-raised:not(.btn-link) {
+		box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1),
+					0 3px 1px -4px rgba(0, 0, 0, 0.02),
+					0 1px 5px 0 rgba(0, 0, 0, 0.1);
+	}
+
+	&.btn-group {
+		margin-top: 0px;
+		margin-bottom: 0px;
+		height: 34px;
+	}
+
+	&.btn-outline {
+		border: solid 1px @brand-primary;
+	}
+
+	&.btn-shortcut-primary {
+		color: @cor-tema;
+	}
+
+	&.btn-shortcut-danger {
+		color: @cor-vermelho;
+	}
+
+	&.btn-space {
+		margin-left: @standard-padding/2 !important;
+	}
+
+	&.btn-fab.btn-fab-nano {
+		height: 30px;
+		min-width: 30px;
+		width: 30px;
+	}
+
+	&.btn-xs {
+		i.material-icons {
+			font-size: 10px;
+			margin-bottom: 1px;
+		}
+	}
+
+	&.btn-default.btn-raised {
+		background-color: @cor-cinza-claro;
+	}
+
+	&.btn-raised:not(.btn-link):hover.btn-default {
+		background-color: darken(@cor-cinza-claro, 10%);
+		color: @mdb-text-color-light;
+	}
+
+	i.material-icons {
+		font-size: 20px;
+		padding-bottom: 2px;
+	}
+
+	&.btn-full-width {
+		width: 100%;
+		margin-top: 20px;
+	}
+
+	&.btn-circle {
+		width: 30px;
+		height: 30px;
+		padding: 6px 0;
+		border-radius: 15px;
+		text-align: center;
+		font-size: 12px;
+		line-height: 1.428571429;
+	}
+
+	&.no-text-transform {
+		text-transform: none;
+	}
+
+}
+
+button:focus {
+	outline: 0 !important;
+	box-shadow: none !important;
+}
+
+button:disabled,
+button[disabled]{
+  border: 1px solid #999999;
+}
+
+button.btn-perfil {
+
+	width: 100%;
+	margin-top: 15px;
+	font-size: 16px;
+	padding: 10px;
+	background-color: transparent;
+	border: none;
+}
+
+button.btn-perfil.botao-ativo {
+
+	background-color: @bg-400;
+	color: @cor-texto-secundario;
+	border: 1px solid @bg-800;
+	box-shadow: -1px 2px 5px 0px rgba(240,240,240,1);
+}

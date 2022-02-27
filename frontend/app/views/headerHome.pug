@@ -1,0 +1,33 @@
+//- include modalAtualizarSenha
+
+#header-body-home.navbar.navbar-header-home
+
+	.container-fluid.no-padding
+
+		.navbar-header
+
+			a.navbar-brand(ng-click='refresh()')
+				img#header-logo-home(src='images/entrada-unica_cor.png')
+
+		.navbar-collapse.collapse.navbar-inverse-collapse
+
+			ul#navbar-usuario.nav.navbar-nav.navbar-right
+
+				li.dropdown-user.logged-user(ng-if="getUsuario().nome")
+					a.dropdown-toggle(type="button", data-toggle="dropdown")
+						span {{getUsuario().nome}}
+
+						i.icon-arrow-header.material-icons keyboard_arrow_down
+
+					ul.dropdown-menu
+
+						li(ng-if="!getUsuario().login.isCNPJ()")
+							a#dropdown-header(ng-click="atualizarCadastro()") Atualizar cadastro
+
+						li
+							a#dropdown-header(ng-click="abrirModalAtualizarSenha()") Atualizar senha
+
+				li
+
+					a(ng-click="logout()")
+						i.material-icons exit_to_app

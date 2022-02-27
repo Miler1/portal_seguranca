@@ -1,0 +1,25 @@
+div#modalAtivarDesativarSetor.modal.fade(ng-show="verificarPermissao(AcaoSistema.ATIVAR_DESATIVAR_SETOR)")
+
+	div.modal-dialog
+
+		form#confirmForm(name="confirmForm", role="form")
+
+			div.modal-content
+
+				div.modal-header
+
+					h2.modal-title(ng-if="setorAtivarDesativar.ativo" id="modal-title") Desativação de setor
+					h2.modal-title(ng-if="!setorAtivarDesativar.ativo" id="modal-title") Ativação de setor
+
+				div.modal-body(id="modal-body")
+
+					p(ng-if="setorAtivarDesativar.ativo")  Tem certeza que deseja desativar o setor {{setorAtivarDesativar.nome}} do sistema?
+					p(ng-if="!setorAtivarDesativar.ativo")  Tem certeza que deseja ativar o setor {{setorAtivarDesativar.nome}} do sistema?
+
+				div.modal-footer.padding-footer
+
+					div.pull-left
+						button.btn.btn-default.btn-raised(type="button" ng-click="fecharModal('modalAtivarDesativarSetor')") Cancelar
+					div.pull-right
+						button.btn.btn-primary.btn-raised(ng-if="setorAtivarDesativar.ativo" type="submit", ng-click="desativarSetor(setorAtivarDesativar.id)") Confirmar
+						button.btn.btn-primary.btn-raised(ng-if="!setorAtivarDesativar.ativo" type="submit", ng-click="ativarSetor(setorAtivarDesativar.id)") Confirmar

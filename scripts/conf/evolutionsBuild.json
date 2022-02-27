@@ -1,0 +1,42 @@
+{
+	"folders": {
+		"base": "./",
+		"output-folder": "./scripts/output/evolutions",
+
+		"portalSeguranca": "{base}/backend/db",
+		"cadastro": "{base}/../cadastro-unificado/backend/db",
+
+		"cadastro-evolutions": "{cadastro}/evolutions",
+		"cadastro-externals": "{cadastro}/externals",
+		"cadastro-seeds": "{cadastro}/seeds",
+
+		"portalSeguranca-evolutions": "{portalSeguranca}/evolutions",
+		"portalSeguranca-externals": "{portalSeguranca}/externals",
+		"portalSeguranca-seeds": "{portalSeguranca}/seeds"
+		
+	},
+
+	"format": {
+		"prefix": ";"
+	},
+
+	"generate": [
+		{ 
+			"output": "{output-folder}/evolutions.sql", 
+			"evolutions": [
+				"portalSeguranca-evolutions[1-16]",
+				"cadastro-evolutions[1-*]",
+				"cadastro-externals[1-3]",
+				"portalSeguranca-evolutions[17-*]",
+				"cadastro-externals[4-*]"
+			]
+		},
+		{
+			"output": "{output-folder}/seeds.sql", 
+			"evolutions": [
+				"portalSeguranca-seeds[1-*]",
+				"cadastro-seeds[1-*]"
+			]
+		}
+	]
+}

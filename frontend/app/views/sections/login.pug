@@ -1,0 +1,40 @@
+
+div(ng-controller="LoginController", ng-init="$parent.verifyUsuario()")
+
+	//- include usuarios/modalRedefinirSenha
+	//- include usuarios/modalCriarConta
+
+	.card-fixed(ng-cloak, ng-if='isRoute("/")')
+
+		.card-logo
+			img(src='images/entrada-unica_cor.png')
+		
+		.card-form
+
+			form(name="loginForm", role="form")
+
+				label.label-login(for='userid') Login:
+				.form-group.inner-addon.left-addon
+					i.material-icons.login  person	
+					input#userid.form-control.input-login(name='username', tabindex="1", placeholder="CPF ou CNPJ", type='text', ui-br-cpfcnpj-mask, ng-model='$parent.username', required, novalidate, on-enter="$parent.login()", ng-model-options="{allowInvalid: true}")
+
+				label.label-login(for='password') Senha:
+				.form-group.inner-addon.left-addon
+					i.material-icons.login  vpn_key
+					input#password.form-control.input-login(name='password', tabindex="2", placeholder='Senha' , on-enter="$parent.login()", type='password', ng-model='$parent.password', required, novalidate)
+
+			button.btn.btn-primary.btn-block.btn-raised(type="submit", tabindex="3", ng-click="$parent.login()")
+				i.material-icons.login  input
+				span  Entrar
+			
+			br
+			a.no-text-decoration( tabindex="4", ng-click="$parent.redefinirSenha()")
+				label.label-login-senha
+					| Esqueci minha senha
+			br
+			.card-footer
+				label.label-login
+					| Não tem uma conta no Entrada Única?
+				button.btn.btn-primary.btn-raised(type="button", tabindex="5", ng-click="$parent.irCadastro()")
+					i.material-icons.login  add
+					span  Criar conta

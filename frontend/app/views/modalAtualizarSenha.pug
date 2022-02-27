@@ -1,0 +1,57 @@
+include components/fieldErrors.pug
+
+div#modalAtualizarSenha.modal.fade
+
+	.modal-dialog
+
+		.modal-content
+
+			form(name="formModalAtualizarSenha", role="form", novalidate)
+
+				.modal-header
+
+					h2.modal-title(id="modal-title") Atualização de senha
+
+				.modal-body(id="modal-body")
+
+
+						.row
+							.col-md-12
+								.form-group
+									label(for="senhaAtual") Senha atual: *
+									input.form-control(type='password', name="senhaAtual", maxlength="150", ng-class="{'ng-invalid' : senhaAtualDiferente }", ng-focus="senhaAtualDiferente = ''", ng-model="senhaAtual", required)
+									span.has-error
+										p.help-block(ng-show="formModalAtualizarSenha.$submitted && formModalAtualizarSenha.senhaAtual.$error.required")
+											| Campo obrigatório
+										p.help-block(ng-show="formModalAtualizarSenha.$submitted && senhaAtualDiferente")
+											| {{senhaAtualDiferente.data}}
+						.row
+							.col-md-12
+								.form-group
+									label.control-label(for='senhaNova') Nova senha: *
+									input.form-control(name='senhaNova', type='password', required, ng-model='senhaNova',  minlength="6", maxlength="150", placeholder="Senha com no mínimo 6 digitos")
+									span.has-error
+										p.help-block(ng-show="formModalAtualizarSenha.$submitted && formModalAtualizarSenha.senhaNova.$error.required")
+											| Campo obrigatório
+										p.help-block(ng-show="formModalAtualizarSenha.$submitted && formModalAtualizarSenha.senhaNova.$error.minlength")
+											| É obrigatório que a senha tenha no mínimo 6 dígitos
+						.row
+							.col-md-12
+								.form-group
+									label(for="senhaConfirmacao") Confirmar senha: *
+									input.form-control(type='password', name="senhaConfirmacao", ng-model="senhaConfirmacao", required,  minlength="6", maxlength="150", placeholder="Senha com no mínimo 6 digitos" , pw-check="senhaNova")
+									span.has-error
+										p.help-block(ng-show="formModalAtualizarSenha.$submitted && formModalAtualizarSenha.senhaConfirmacao.$error.required")
+											| Campo obrigatório
+										p.help-block(ng-show="formModalAtualizarSenha.$submitted && formModalAtualizarSenha.senhaConfirmacao.$error.minlength")
+											| É obrigatório que a senha tenha no mínimo 6 dígitos
+										p.help-block(ng-show="formModalAtualizarSenha.$submitted && formModalAtualizarSenha.senhaConfirmacao.$error.pwCheck && !formModalAtualizarSenha.senhaConfirmacao.$error.required && !formModalAtualizarSenha.senhaConfirmacao.$error.minlength")
+											| As senhas não conferem
+
+				.modal-footer.padding-footer
+					.pull-left
+						button.btn.btn-default.btn-raised(type='button', data-dismiss="modal") Cancelar
+					.pull-right
+						button.btn.btn-primary.btn-raised(type='submit', ng-click="salvarNovaSenha()", ng-disabled="formModalAtualizarSenha.$error.required || formModalAtualizarSenha.$error.minlength || formModalAtualizarSenha.$untouched || formModalAtualizarSenha.$pristine")
+							i.material-icons save
+							|	Salvar

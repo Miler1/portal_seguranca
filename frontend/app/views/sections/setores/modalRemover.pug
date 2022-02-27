@@ -1,0 +1,22 @@
+div#modalExcluir.modal.fade(ng-if="verificarPermissao(AcaoSistema.REMOVER_SETOR)")
+
+	div.modal-dialog
+
+		div.modal-content
+
+			div.modal-header
+
+				h2.modal-title(id="modal-title") Confirmação de exclusão
+
+			div.modal-body(id="modal-body")
+
+				center
+					span.spanExcluir
+						p Tem certeza que deseja excluir o setor {{setorExcluir.nome}} do sistema?
+						p Todos os vínculos existentes serão perdidos.
+
+			div.modal-footer.padding-footer
+					div.pull-left
+						button.btn.btn-default.btn-raised(type="button" ng-click="fecharModal('modalExcluir')") Cancelar
+					div.pull-right
+						button.btn.btn-primary.btn-raised(type="button" ng-click="excluir(setorExcluir.id)") Confirmar

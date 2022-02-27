@@ -1,0 +1,118 @@
+include ../../components/paginacao
+
+h1.page-header(ng-if="verificarPermissao(AcaoSistema.PESQUISAR_PERFIS)")
+	| Gestão de perfis
+	//- button.btn.btn-raised.btn-header.header-btn.pull-right.btn-primary(ng-click="irCadastro()", ng-if="verificarPermissao(AcaoSistema.PESQUISAR_PERFIS)")
+	//- 	i.material-icons add
+	//- 	|	Cadastrar
+
+.card(ng-if="verificarPermissao(AcaoSistema.PESQUISAR_PERFIS)")
+
+	h3 Pesquisar
+
+	form(name="form", novalidate)
+		.row
+			.col-md-6
+				.form-group
+					label(for='nome') Nome:
+					input.form-control(name="nome", type="text", ng-model="filtro.nome", maxlength="200", on-enter="listar()")
+
+			.col-md-3
+				.form-group
+					label(for='modulo') Módulo:
+					input.form-control(name="modulo", type="text", ng-model="filtro.siglaModulo", maxlength="3", on-enter="listar()")
+
+			.col-md-3
+				.form-group
+					label(for='status') Status:
+					select.form-control(name='status_do_perfil', ng-options="status.valor as status.nome for status in constantes.status", ng-model="filtro.ativo", on-enter="listar()")
+						option(value="" disabled selected style="display: none;") Selecione
+
+	button#botaoPesquisar.btn.btn-raised.btn-sm.btn-primary.pull-right(type="button", ng-click="listar()")
+		i.material-icons search
+		|	Pesquisar
+
+	button.btn.btn-link.no-padding-sides.btn-xs.btn-shortcut-danger.pull-left.btn-blur(type="button", ng-click="limparFiltro()")
+		i.material-icons clear
+		|	Limpar
+
+.card(ng-if="verificarPermissao(AcaoSistema.PESQUISAR_PERFIS)")
+
+	h3 Perfis cadastrados
+
+	table.table.table-hover.table-striped(ng-if='paginacao.totalItens > 0')
+		thead
+			tr
+
+				th.col-fixed-40
+
+				th.col-fixed-40
+
+				th.col-md-7
+					span.pointer(ng-click='listar("Nome", ordenacaoReversa = !ordenacaoReversa)')
+						| Nome
+					i.pointer.material-icons(ng-click='listar("Nome", ordenacaoReversa)', ng-show='campo !== "Nome"') filter_list
+					span.pointer(ng-show='campo == "Nome"')
+						i.material-icons(ng-click='listar("Nome", ordenacaoReversa = !ordenacaoReversa)', ng-show='!ordenacaoReversa') arrow_downward
+						i.material-icons(ng-click='listar("Nome", ordenacaoReversa = !ordenacaoReversa)', ng-show='ordenacaoReversa') arrow_upward
+				th.col-md-4
+					span.pointer(ng-click='listar("Modulo", ordenacaoReversa = !ordenacaoReversa)')
+						| Módulo
+					i.pointer.material-icons(ng-click='listar("Modulo", ordenacaoReversa)', ng-show='campo !== "Modulo"') filter_list
+					span.pointer(ng-show='campo == "Modulo"')
+						i.material-icons(ng-click='listar("Modulo", ordenacaoReversa = !ordenacaoReversa)', ng-show='!ordenacaoReversa') arrow_downward
+						i.material-icons(ng-click='listar("Modulo", ordenacaoReversa = !ordenacaoReversa)', ng-show='ordenacaoReversa') arrow_upward
+				th.col-md-1
+
+				th
+
+		tbody
+			tr(ng-repeat=("perfil in perfis"))
+
+				td
+					div.status-ativo(ng-if="perfil.ativo", uib-tooltip="Ativo", tooltip-placement="top-left")
+					div.status-inativo(ng-if="!perfil.ativo", uib-tooltip="Inativo", tooltip-placement="top-left")
+
+				td
+					i.lock-icons.material-icons(ng-if="!perfil.cadastroEntradaUnica", uib-tooltip="Exclusão não permitida", tooltip-placement="top-left") lock_outline
+					i.lock-icons.material-icons(ng-if="perfil.cadastroEntradaUnica", uib-tooltip="Exclusão permitida", tooltip-placement="top-left") lock_open
+
+				td
+					.text(uib-tooltip="{{perfil.nome}}", tooltip-placement="top-left")
+						span {{perfil.nome}}
+
+				td
+					.text(uib-tooltip="{{perfil.moduloPertencente.sigla}}", tooltip-placement="top-left")
+						span {{perfil.moduloPertencente.sigla}}
+
+				td
+
+					div.dropdown
+						button.btn.btn-primary.btn-xs.btn-outline(type="button", data-toggle="dropdown")
+							|	ações &nbsp;
+							span.caret
+						ul.dropdown-menu.dropdown-menu-right(role="menu")
+							li(ng-if="verificarPermissao(AcaoSistema.VISUALIZAR_PERFIL)")
+								a(title='Visualizar', ng-click='goToRoute("perfil/visualizacao/" + perfil.id)')
+									i.material-icons remove_red_eye
+									|	Visualizar
+
+						//
+							li(ng-if="verificarPermissao(AcaoSistema.EDITAR_PERFIL)")
+								a(title='Editar', ng-click='')
+									i.material-icons mode_edit
+									|	Editar
+							li(ng-if="verificarPermissao(AcaoSistema.ATIVAR_DESATIVAR_PERFIL)")
+								a.user-info(title='Ativar', ng-if='!perfil.ativo', ng-click='')
+									i.material-icons.ativo person
+									|	Ativar
+
+								a.user-info(title='Desativar', ng-if='perfil.ativo', ng-click='')
+									i.material-icons.inativo person
+									|	Desativar
+
+	+paginacao("paginacao", "perfis")
+
+	center(ng-if='paginacao.totalItens === 0')
+		span
+			| Não existem dados a serem exibidos.

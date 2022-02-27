@@ -1,0 +1,328 @@
+
+@import "../../bower_components/bootstrap/less/bootstrap.less";
+// @import "../../bower_components/bootstrap-material-design/less/bootstrap-material-design.less";
+// @import "../../bower_components/bootstrap-material-design/less/_core.less";
+@import "../../bower_components/bootstrap-material-design/less/_variables.less";
+@import "../../bower_components/bootstrap-material-design/less/_mixins.less";
+@import "../../bower_components/bootstrap-material-design/less/_shadows.less";
+
+// ------------------- INICIO - MATERIAL BOOTSTRAP ---------------------------------
+
+body {
+	background-color: @body-bg;
+	&.inverse {
+		background: #333333;
+		&, .form-control {
+			color: @mdb-text-color-light;
+		}
+		.modal,
+		.panel-default,
+		.card {
+			&,
+			.form-control {
+			background-color: initial;
+			color: initial;
+			}
+		}
+
+	}
+}
+
+
+body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4 {
+	font-family: @font-family-sans-serif;
+	font-weight: 300;
+}
+
+h5, h6{
+	font-weight: 400;
+}
+
+a, a:hover, a:focus {
+	color: @link-color;
+
+	& .material-icons {
+	vertical-align: middle;
+	}
+}
+
+@import "../../bower_components/bootstrap-material-design/less/_form.less";
+@import "../../bower_components/bootstrap-material-design/less/_buttons.less";
+@import "../../bower_components/bootstrap-material-design/less/_checkboxes.less";
+@import "../../bower_components/bootstrap-material-design/less/_togglebutton.less";
+@import "../../bower_components/bootstrap-material-design/less/_radios.less";
+
+legend {
+	border-bottom: 0;
+}
+
+@import "../../bower_components/bootstrap-material-design/less/_lists.less";
+@import "../../bower_components/bootstrap-material-design/less/_navbar.less";
+
+.dropdown-menu {
+	border: 0;
+	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+	.divider {
+	background-color: rgba(0, 0, 0, .12);
+	}
+	li {
+	overflow: hidden;
+	position: relative;
+	a:hover {
+		background-color: transparent;
+		color: @brand-primary;
+	}
+	}
+}
+
+@import "../../bower_components/bootstrap-material-design/less/_alerts.less";
+@import "../../bower_components/bootstrap-material-design/less/_progress.less";
+@import "../../bower_components/bootstrap-material-design/less/_typography.less";
+@import "../../bower_components/bootstrap-material-design/less/_tabs.less";
+@import "../../bower_components/bootstrap-material-design/less/_popups.less";
+@import "../../bower_components/bootstrap-material-design/less/_cards.less";
+@import "../../bower_components/bootstrap-material-design/less/_dialogs.less";
+@import "../../bower_components/bootstrap-material-design/less/_panels.less";
+@import "../../bower_components/bootstrap-material-design/less/_dividers.less";
+
+// Prevent highlight on mobile
+* {
+	-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+	-webkit-tap-highlight-color: transparent;
+	&:focus {
+	outline: 0;
+	}
+}
+
+
+@import "../../bower_components/bootstrap-material-design/less/_themes.less";
+
+// External plugins
+//   @import "_plugins.less";
+
+// ------------------- FIM - MATERIAL BOOTSTRAP ------------------------------------
+
+@import "../../bower_components/bootstrap-material-design/less/ripples.less";
+@import (less) "../../bower_components/material-design-icons/iconfont/material-icons.css";
+@import (less) "../../bower_components/dropzone/dist/min/dropzone.min.css";
+@import (less) "../../bower_components/ui-cropper/compile/minified/ui-cropper.css";
+@import (less) "../../bower_components/mdi/css/materialdesignicons.css";
+@import (less) "../../bower_components/material-design-icons/iconfont/material-icons.css";
+@import "_variables.less";
+@import "_map.less";
+@import "_navs.less";
+@import "_chip.less";
+@import "_pagination.less";
+@import "_table.less";
+@import "_button.less";
+@import "_dropdown.less";
+@import "_card.less";
+@import "_input.less";
+@import "_panel.less";
+@import "_modal.less";
+@import "_dropzone.less";
+@import "_multiselect.less";
+@import "_icons.less";
+
+body {
+	overflow: hidden;
+}
+
+h1 {
+	color: @cor-texto-principal;
+	font-weight: 400;
+}
+
+h2,h3,h4,h5 {
+	font-weight: 400;
+	color: @cor-texto-secundario;
+}
+
+a {
+	cursor: pointer;
+
+	&:hover {
+		color: @cor-tema;
+	}
+}
+
+.pointer {
+	cursor: pointer;
+}
+
+.badge {
+	i.material-icons {
+		font-size: 15px;
+	}
+}
+
+.badge.badge-success {
+	background-color: @cor-verde;
+}
+
+.badge.badge-error {
+	background-color: @cor-vermelho;
+}
+
+.page-header {
+
+	margin-top: @header-margin;
+
+	.header-btn {
+		margin: 0px;
+	}
+
+}
+
+.md-padding {
+	padding: 0px @standard-padding;
+}
+
+.no-padding-sides {
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+}
+
+.no-padding {
+	padding: 0px;
+}
+
+.no-margin {
+	margin: 0;
+}
+
+.linhaVisualizar {
+	margin-bottom: 5px;
+}
+
+uib-tooltip-popup {
+	z-index: 1500;
+}
+
+#header-body {
+	margin-bottom: 0px;
+	background-color: @white;
+	color: @cor-tema;
+	z-index: 10;
+	box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.14),
+				0px 0px 2px 2px rgba(0, 0, 0, 0.098),
+				0px 0px 5px 1px rgba(0, 0, 0, 0.084);
+	.logged-user {
+		a {
+			color: @cor-texto-principal;
+			cursor: pointer;
+			padding-right: 0px;
+			padding-bottom: 0px;
+		}
+	}
+}
+
+#header-body-home {
+	margin-bottom: 0px;
+	background-color: @white;
+	color: @cor-tema;
+	z-index: 10;
+	.logged-user {
+		a {
+			color: @cor-texto-principal;
+			cursor: pointer;
+			padding-right: 0px;
+			padding-bottom: 0px;
+		}
+	}
+
+	.dropdown-toggle {
+		padding-left: 0px;
+	}
+
+	.icon-arrow-header {
+		color: @cor-texto-principal;
+		font-size: 20px;
+		position: relative;
+		cursor: pointer;
+	}
+
+	box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.14),
+	0px 0px 2px 2px rgba(0, 0, 0, 0.098),
+	0px 0px 5px 1px rgba(0, 0, 0, 0.084);
+
+}
+
+.body-view {
+	overflow-y: auto;
+	max-height: 93vh;
+	background-color: @bg;
+	min-height: 93vh;
+	padding: 0px 20px 20px 20px;
+}
+
+.status-inativo {
+
+	width: 20px;
+	height: 20px;
+
+	&:before {
+		background-color: @cor-vermelho;
+		color: @white;
+		content: 'I';
+		width: 20px;
+		height: 20px;
+		position: absolute;
+		text-align: center;
+	}
+}
+
+.status-ativo {
+
+	width: 20px;
+	height: 20px;
+
+	&:before {
+		background-color: @cor-verde;
+		color: @white;
+		content: 'A';
+		width: 20px;
+		height: 20px;
+		position: absolute;
+		text-align: center;
+	}
+}
+
+.justify {
+	text-align: justify;
+	text-justify: inter-word;
+}
+
+.color-inherit {
+	color: inherit;
+}
+
+.color-inherit:hover {
+	color: inherit;
+}
+
+.no-text-decoration:hover {
+	text-decoration: none;
+}
+
+#modulo-img {
+	height: 150px;
+}
+
+#perfil-img {
+	height: 70px;
+}
+
+.no-margin-bottom {
+	margin-bottom: 0px !important;
+}
+
+.span-disponible {
+	background-color: @cor-azul-marinho;
+	font-weight: 400;
+	color: @white;
+}
+
+.span-indisponible {
+	font-weight: 400;
+}

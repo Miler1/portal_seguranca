@@ -1,0 +1,15 @@
+mixin paginacao(model, nomeLista)
+	- nomeLista = nomeLista || "processos"
+
+	div.md-pagination(ng-show=model + '.totalItens > 0')
+		div.pages.pull-right(uib-pagination, boundary-links='true', total-items=model + '.totalItens', ng-model=model + '.paginaAtual', previous-text='‹', next-text='›',
+			first-text='«', last-text='»', rotate='true', num-pages=model + '.qtdPaginas', max-size='5',
+			items-per-page=model + '.tamanhoPagina', ng-change=model + ".onPaginaClick()")
+		span.pagination-count.pull-right
+			| Exibindo&nbsp;
+			strong {{#{model}.intervaloItens.inicio}}
+			| &nbsp;-&nbsp;
+			strong {{#{model}.intervaloItens.fim}}
+			| &nbsp;de&nbsp;
+			strong {{#{model}.totalItens}}
+			| &nbsp;#{nomeLista}
